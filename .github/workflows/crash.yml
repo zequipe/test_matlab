@@ -33,6 +33,7 @@ jobs:
           command: |
               crash('setup')
 
+  test:
     name: Crash MATLAB during mexification
     runs-on: ubuntu-latest
     steps:
