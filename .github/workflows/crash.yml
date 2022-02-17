@@ -36,7 +36,7 @@ jobs:
         uses: matlab-actions/run-command@v1
         with:
           command: |
-              if strcmpi('${{ matrix.crash_type }}', 'default')
+              if strcmpi('${{ matrix.crash_type }}', 'default') && ${{ matrix.crash_indicator }}
                   crash;
               else
                   if ${{ matrix.crash_indicator }}
