@@ -17,7 +17,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        crash_type: [setup, mex]
+        crash_type: [default, setup, mex]
+        crash_indicator : [true, false]
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
@@ -35,4 +36,12 @@ jobs:
         uses: matlab-actions/run-command@v1
         with:
           command: |
-              crash('${{ matrix.crash_type }}')
+              if strcmpi('${{ matrix.crash_type }}', 'default')
+                  crash;
+              else
+                  if ${{ crash_indicator }}
+                      crash('${{ matrix.crash_type }}')
+                  else
+                      crash('${{ matrix.crash_type }}', false)
+                  end
+              end
