@@ -1,8 +1,9 @@
 ## Introduction
 
-This is a set of tools for testing the behavior of MATLAB.
+[`crash.m`](https://github.com/zaikunzhang/test_matlab/blob/master/crash.m) illustrates a bug of
+MATLAB concerning [`MEX`](https://www.mathworks.com/help/matlab/ref/mex.html).
 
-## Usage
+## How to crash MATLAB?
 
 Run the following commands in the MATLAB command line under the directory containing `crash.m`.
 
@@ -27,6 +28,14 @@ On Linux, normally you only need to install `gcc` and then run `mex('-setup', 'C
 
 According to limited tests, the bug does not affect the macOS version of MATLAB. Windows has not
 been tested.
+
+
+## How to fix the problem?
+
+Before MathWorks fixes the bug, the crash can be avoided according to the comments in the function
+[`copy_src`](https://github.com/zaikunzhang/test_matlab/blob/e8b16e11624e44f2c7702453994a0d322c6b208b/crash.m#L155)
+in `crash.m`.
+
 
 ## Contact
 
