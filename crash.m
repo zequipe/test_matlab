@@ -72,7 +72,6 @@ fprintf('Done.\n');
 for itest = 1 : 2
     fprintf('\n************************* Test %d starts. *************************\n', itest);
 
-    restoredefaultpath; % `restoredefaultpath` and `rmpath(build_dir)` do not avoid the crash.
     compile(src_dir, build_dir, timestwo_src_name, crash_type);
 
     fprintf('\nWhich `timestwo`?\n');
@@ -113,7 +112,7 @@ switch crash_type
 case 'setup' % First copy the source files from `src_dir` to `build_dir`, and then set up MEX.
 
     fprintf('\nCopy the source directory to the build directory ... ');
-    copyfile(src_dir, build_dir, 'f');
+    copy_src(src_dir, build_dir);
     fprintf('Done.\n');
 
     fprintf('\nConfigure MEX for compiling %s ...\n', language);
@@ -127,7 +126,7 @@ case 'mex'  % First set up MEX, and then copy the source files from `src_dir` to
     fprintf('Done.\n');
 
     fprintf('\nCopy the source directory to the build directory ... ');
-    copyfile(src_dir, build_dir, 'f');
+    copy_src(src_dir, build_dir);
     fprintf('Done.\n');
 
 otherwise
@@ -144,5 +143,29 @@ mex(timestwo_src, '-outdir', build_dir);
 addpath(build_dir);
 fprintf('Done.\n');
 
+
+return
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+function copy_src(src_dir, build_dir)
+
+%restoredefaultpath; % `restoredefaultpath` or `rmpath(build_dir)` alone can NOT fix the crash
+
+%clear('timestwo');  % This line alone can fix the crash
+
+%delete(fullfile(src_dir, ['*.', mexext]));  % This line alone can fix the crash
+
+%if exist(build_dir, 'dir'); rmdir(build_dir, 's'); end  % This line alone can fix the crash
+
+copyfile(src_dir, build_dir, 'f');
+
+%delete(fullfile(build_dir, ['*.', mexext]));  % This line alone can NOT fix the crash
+
+%clear('timestwo')  % This line alone can NOT fix the crash
 
 return
