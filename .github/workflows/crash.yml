@@ -21,7 +21,7 @@ jobs:
         crash_indicator : [true, false]
         exclude:
           - crash_type: default
-          - crash_indicator: false
+            crash_indicator: false
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
