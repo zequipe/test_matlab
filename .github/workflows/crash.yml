@@ -12,7 +12,7 @@ on:
 
 jobs:
   test:
-    name: Crash MATLAB
+    name: Crash MATLAB during `mex('-setup', language)
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -31,4 +31,25 @@ jobs:
         uses: matlab-actions/run-command@v1
         with:
           command: |
-              crash
+              crash('setup')
+
+    name: Crash MATLAB during mexification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Check MATLAB
+        id: check_matlab
+        run: |
+            if type 'matlab' &> /dev/null ; then echo "::set-output name=has_matlab::true" ; fi
+
+      - name: Set up MATLAB
+        if: ${{ steps.check_matlab.outputs.has_matlab != 'true' }}
+        uses: matlab-actions/setup-matlab@v1
+
+      - name: Run script
+        uses: matlab-actions/run-command@v1
+        with:
+          command: |
+              crash('mex')

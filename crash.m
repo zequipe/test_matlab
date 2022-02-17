@@ -1,42 +1,78 @@
-function crash(crash_indicator)
-%CRASH is a script to crash MATLAB provided that MEX is configured for Fortran.
+function crash(crash_type, crash_indicator, language)
+%CRASH is a script to crash MATLAB provided that MEX is configured for `language` and
+% `crash_indicator` is absent or set to true. There are two types of crashes:
+% 1. if crash_type == 'setup', then `mex('-setup', language)` crashes;
+% 2. if crash_type == 'mex', then `mex(timestwo_src, '-outdir', build_dir)` crashes.
 
-cind = ((nargin < 1) || crash_indicator);
 
-% The official example for Fortran MEX provided by MathWorks.
-official_timestwo_src = fullfile(matlabroot, 'extern', 'examples', 'refbook', 'timestwo.F');
+% Parse the input.
+if nargin < 1 || ~(isa(crash_type, 'char') || isa(crash_type, 'str'))
+    crash_type = 'setup';
+end
+
+cind = (nargin < 2 || crash_indicator);
+
+if nargin < 3 || ~(isa(language, 'char') || isa(language, 'str'))
+    language = 'C';
+end
+
+
+% Locate the official example for MEX provided by MathWorks.
+if strcmpi(language, 'Fortran')
+    timestwo_src_name = 'timestwo.F';
+elseif strcmpi(language, 'C') || strcmpi(language, 'C++')
+    timestwo_src_name = 'timestwo.c';
+else
+    error('Unknown language: %s', language);
+end
+
+official_timestwo_src = fullfile(matlabroot, 'extern', 'examples', 'refbook', timestwo_src_name);
+
 
 % Directories.
 test_dir = pwd();
-src_dir = fullfile(test_dir, 'src');
 build_dir = fullfile(test_dir, 'build');
-if ~exist(src_dir, 'dir')
-    mkdir(src_dir);
+src_dir = fullfile(test_dir, 'src');
+
+
+% Prepare the build directory.
+if exist(build_dir, 'dir')
+    rmdir(build_dir, 's');
+elseif exist(build_dir, 'file')
+    delete(build_dir);
 end
 
-fake_mex_file_name = ['timestwo.', mexext];
-fake_mex_file = fullfile(src_dir, fake_mex_file_name);
-fprintf('\nCreate a fake %s file in the source directory ... ', fake_mex_file_name);
-fclose(fopen(fake_mex_file, 'w'));
-fprintf('Done.\n')
 
-fprintf('\nCopy the official `timestwo.F` to the source directory ... ');
-timestwo_src = fullfile(src_dir, 'timestwo.F');
+% Prepare the source directory.
+if exist(src_dir, 'dir')
+    rmdir(src_dir, 's');
+elseif exist(src_dir, 'file')
+    delete(src_dir);
+end
+
+mkdir(src_dir);
+
+if cind
+    % Create in the source directory a file with the same name as the mexified `timestwo`.
+    fake_mex_file_name = ['timestwo.', mexext];
+    fake_mex_file = fullfile(src_dir, fake_mex_file_name);
+    fprintf('\nCreate a fake %s file in the source directory ... ', fake_mex_file_name);
+    fclose(fopen(fake_mex_file, 'w'));
+    fprintf('Done.\n');
+end
+
+fprintf('\nCopy the official `%s` to the source directory ... ', timestwo_src_name);
+timestwo_src = fullfile(src_dir, timestwo_src_name);
 copyfile(official_timestwo_src, timestwo_src, 'f');
-fileattrib(timestwo_src, '+w')
-fprintf('Done.\n')
+fileattrib(timestwo_src, '+w');
+fprintf('Done.\n');
 
-fprintf('\nConfigure MEX for compiling Fortran ...\n');
-mex('-setup', 'FORTRAN');
-fprintf('Done.\n')
 
-cpwd = pwd();
-
+% Conduct the tests.
 for itest = 1 : 2
-    fprintf('\n**************** Test %d starts. ****************\n', itest);
+    fprintf('\n************************* Test %d starts. *************************\n', itest);
 
-    compile(src_dir, build_dir, cind);
-    cd(cpwd);
+    compile(src_dir, build_dir, timestwo_src_name, crash_type);
 
     fprintf('\nWhich `timestwo`?\n');
     which('timestwo')
@@ -44,30 +80,68 @@ for itest = 1 : 2
     fprintf('\nEvaluate `timestwo(1)` ... ');
     timestwo(1)
 
-    fprintf('***************** Test %d ends. *****************\n\n', itest);
+    fprintf('************************** Test %d ends. **************************\n\n', itest);
 end
+
 
 return
 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function compile(src_dir, build_dir, cind)
 
-fprintf('\nCopy the source directory to the build directory ... ');
-copyfile(src_dir, build_dir, 'f');
-fprintf('Done.\n');
 
-if cind
-    fprintf('\nChange directory to the build directory ... ');
-    cd(build_dir);
-    fprintf('Done.\n');
+function compile(src_dir, build_dir, timestwo_src_name, crash_type)
+%COMPILE is a script that copies the source files from src_dir to build_dir and then compile them.
+
+
+% Decide the language being tested.
+if endsWith(timestwo_src_name, 'F')
+    language = 'Fortran';
+elseif endsWith(timestwo_src_name, 'c')
+    language = 'C';
+else
+    error('Unknown source file name %s', timestwo_src_name)
 end
 
-fprintf('\nCompile `timestwo.F` ... \n');
-timestwo_src = fullfile(build_dir, 'timestwo.F');
+
+% Copy the source files and set up MEX. The order decides what kind of crash will occur.
+switch crash_type
+
+case 'setup' % First copy the source files from `src_dir` to `build_dir`, and then set up MEX.
+
+    fprintf('\nCopy the source directory to the build directory ... ');
+    copyfile(src_dir, build_dir, 'f');
+    fprintf('Done.\n');
+
+    fprintf('\nConfigure MEX for compiling %s ...\n', language);
+    mex('-setup', language);
+    fprintf('Done.\n');
+
+case 'mex'  % First set up MEX, and then copy the source files from `src_dir` to `build_dir`.
+
+    fprintf('\nConfigure MEX for compiling %s ...\n', language);
+    mex('-setup', language);
+    fprintf('Done.\n');
+
+    fprintf('\nCopy the source directory to the build directory ... ');
+    copyfile(src_dir, build_dir, 'f');
+    fprintf('Done.\n');
+
+otherwise
+
+    error('Unknown crash type %s', crash_type);
+
+end
+
+
+% Compilation.
+fprintf('\nCompile `%s` ... \n', timestwo_src_name);
+timestwo_src = fullfile(build_dir, timestwo_src_name);
 mex(timestwo_src, '-outdir', build_dir);
 addpath(build_dir);
 fprintf('Done.\n');
+
 
 return
