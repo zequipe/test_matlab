@@ -12,12 +12,12 @@ on:
 
 jobs:
   test:
-    name: Crash MATLAB during `mex('-setup', language)
+    name: Crash MATLAB during MEX setup or mexification
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        solver: [setup, mex]
+        crash_type: [setup, mex]
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
