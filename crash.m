@@ -10,6 +10,16 @@ test_dir = pwd();
 src_dir = fullfile(test_dir, 'src');
 build_dir = fullfile(test_dir, 'build');
 
+if ~exist(src_dir, 'dir')
+    mkdir(src_dir);
+end
+
+fake_mex_file_name = ['timestwo.', mexext];
+fake_mex_file = fullfile(src_dir, fake_mex_file_name);
+fprintf('\nCreate a fake %s file in the source directory ... ', fake_mex_file_name);
+fclose(fopen(fake_mex_file, 'w'));
+fprintf('Done.\n')
+
 fprintf('\nCopy the official `timestwo.F` to the source directory ... ');
 copyfile(official_timestwo_src, src_dir);
 fprintf('Done.\n')
@@ -52,7 +62,7 @@ end
 
 fprintf('\nCompile `timestwo.F` ... \n');
 timestwo_src = fullfile(build_dir, 'timestwo.F');
-mex(timestwo_src);
+mex(timestwo_src, '-outdir', build_dir);
 addpath(build_dir);
 fprintf('Done.\n');
 
