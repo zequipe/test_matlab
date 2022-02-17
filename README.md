@@ -4,8 +4,11 @@ This is a set of tools for testing the behavior of MATLAB.
 
 ## Usage
 
+Run the following commands in the MATLAB command line under the directory containing `crash.m`.
+
 ```matlab
-crash  % Run this command in the MATLAB command line under the directory containing crash.m
+crash('setup');  % crash during `mex('-setup', 'C')`; running `crash` has the same effect
+crash('mex');  % crash during `mex(timestwo_src, '-outdir', build_dir)`
 ```
 
 The above execution crashes MATLAB under Linux, which is confirmed on the following versions.
@@ -19,8 +22,8 @@ The above execution crashes MATLAB under Linux, which is confirmed on the follow
 If you want to see how the crash looks like, check the
 GitHub Action [`Crash MATLAB`](https://github.com/zaikunzhang/test_matlab/actions) of this repo.
 
-To reproduce the crash on your own machine, your MATLAB has to have `MEX` configured for `Fortran`. On Linux,
-normally you only need to install `gfortran` and then run `mex('-setup', 'FORTRAN')` in MATLAB.
+To reproduce the crash on your own machine, your MATLAB has to have `MEX` configured for compiling `C`.
+On Linux, normally you only need to install `gcc` and then run `mex('-setup', 'C')` in MATLAB.
 
 According to limited tests, the bug does not affect the macOS version of MATLAB. Windows has not
 been tested.
