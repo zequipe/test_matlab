@@ -16,8 +16,14 @@ The above execution crashes MATLAB under Linux, which is confirmed on the follow
 - R2021a Update 5 (9.10.0.1739362) 64-bit (glnxa64),
 - R2021b Update 1 (9.11.0.1809720) (glnxa64)
 
-To reproduce the crash, your MATLAB has to have `MEX` configured for `Fortran`. On Linux,
+If you want to see how the crash looks like, check the
+GitHub Action [`Crash MATLAB`](https://github.com/zaikunzhang/test_matlab/actions) of this repo.
+
+To reproduce the crash on your own machine, your MATLAB has to have `MEX` configured for `Fortran`. On Linux,
 normally you only need to install `gfortran` and then run `mex('-setup', 'FORTRAN')` in MATLAB.
+
+According to limited tests, the bug does not exist on the macOS version of MATLAB. Windows has not
+been tested.
 
 ## Contact
 
