@@ -9,7 +9,6 @@ official_timestwo_src = fullfile(matlabroot, 'extern', 'examples', 'refbook', 't
 test_dir = pwd();
 src_dir = fullfile(test_dir, 'src');
 build_dir = fullfile(test_dir, 'build');
-
 if ~exist(src_dir, 'dir')
     mkdir(src_dir);
 end
@@ -21,7 +20,9 @@ fclose(fopen(fake_mex_file, 'w'));
 fprintf('Done.\n')
 
 fprintf('\nCopy the official `timestwo.F` to the source directory ... ');
-copyfile(official_timestwo_src, src_dir);
+timestwo_src = fullfile(src_dir, 'timestwo.F');
+copyfile(official_timestwo_src, timestwo_src);
+fileattrib(timestwo_src, '+w')
 fprintf('Done.\n')
 
 fprintf('\nConfigure MEX for compiling Fortran ...\n');
