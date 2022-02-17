@@ -5,7 +5,7 @@ This is a set of tools for testing the behavior of MATLAB.
 ## Usage
 
 ```matlab
-crash
+crash  % Run this command in the MATLAB command line window under the directory containing crash.m
 ```
 
 The above execution crashes MATLAB under Linux, which is confirmed on the following versions.
@@ -22,7 +22,7 @@ GitHub Action [`Crash MATLAB`](https://github.com/zaikunzhang/test_matlab/action
 To reproduce the crash on your own machine, your MATLAB has to have `MEX` configured for `Fortran`. On Linux,
 normally you only need to install `gfortran` and then run `mex('-setup', 'FORTRAN')` in MATLAB.
 
-According to limited tests, the bug does not exist on the macOS version of MATLAB. Windows has not
+According to limited tests, the bug does not affect the macOS version of MATLAB. Windows has not
 been tested.
 
 ## Contact
