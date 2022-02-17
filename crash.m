@@ -72,10 +72,7 @@ fprintf('Done.\n');
 for itest = 1 : 2
     fprintf('\n************************* Test %d starts. *************************\n', itest);
 
-    rmpath(build_dir);
-    % `rmpath` seems to affect the crash type. Without this, `crash('setup')` is not ensured to
-    % crash during `mex('-setup', language)` except on GitHub Actions, where the system and MATLAB
-    % are freshly installed.
+    restoredefaultpath; % `restoredefaultpath` and `rmpath(build_dir)` do not avoid the crash.
     compile(src_dir, build_dir, timestwo_src_name, crash_type);
 
     fprintf('\nWhich `timestwo`?\n');
