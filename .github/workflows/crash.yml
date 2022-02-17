@@ -37,11 +37,11 @@ jobs:
         with:
           command: |
               if strcmpi('${{ matrix.crash_type }}', 'default')
-                  crash;
+              crash;
               else
-                  if ${{ crash_indicator }}
-                      crash('${{ matrix.crash_type }}')
-                  else
-                      crash('${{ matrix.crash_type }}', false)
-                  end
+              if ${{ crash_indicator }}
+              crash('${{ matrix.crash_type }}')
+              else
+              crash('${{ matrix.crash_type }}', false)
+              end
               end
