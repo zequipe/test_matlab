@@ -5,7 +5,7 @@ This is a set of tools for testing the behavior of MATLAB.
 ## Usage
 
 ```matlab
-crash  % Run this command in the MATLAB command line window under the directory containing crash.m
+crash  % Run this command in the MATLAB command line under the directory containing crash.m
 ```
 
 The above execution crashes MATLAB under Linux, which is confirmed on the following versions.
