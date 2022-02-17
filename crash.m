@@ -1,5 +1,5 @@
 function crash(crash_indicator)
-%CRASH
+%CRASH is a script to crash MATLAB provided that MEX is configured for Fortran.
 
 cind = ((nargin < 1) || crash_indicator);
 
