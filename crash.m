@@ -1,4 +1,5 @@
 function crash(crash_indicator)
+%CRASH
 
 cind = ((nargin < 1) || crash_indicator);
 
@@ -21,7 +22,7 @@ fprintf('Done.\n')
 
 fprintf('\nCopy the official `timestwo.F` to the source directory ... ');
 timestwo_src = fullfile(src_dir, 'timestwo.F');
-copyfile(official_timestwo_src, timestwo_src);
+copyfile(official_timestwo_src, timestwo_src, 'f');
 fileattrib(timestwo_src, '+w')
 fprintf('Done.\n')
 
@@ -29,11 +30,13 @@ fprintf('\nConfigure MEX for compiling Fortran ...\n');
 mex('-setup', 'FORTRAN');
 fprintf('Done.\n')
 
-for itest = 1 : 2
+cpwd = pwd();
 
+for itest = 1 : 2
     fprintf('\n**************** Test %d starts. ****************\n', itest);
 
     compile(src_dir, build_dir, cind);
+    cd(cpwd);
 
     fprintf('\nWhich `timestwo`?\n');
     which('timestwo')
@@ -52,7 +55,7 @@ return
 function compile(src_dir, build_dir, cind)
 
 fprintf('\nCopy the source directory to the build directory ... ');
-copyfile(src_dir, build_dir);
+copyfile(src_dir, build_dir, 'f');
 fprintf('Done.\n');
 
 if cind
