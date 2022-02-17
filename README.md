@@ -34,7 +34,16 @@ been tested.
 
 Before MathWorks fixes the bug, the crash can be avoided according to the comments in the function
 [`copy_src`](https://github.com/zaikunzhang/test_matlab/blob/e8b16e11624e44f2c7702453994a0d322c6b208b/crash.m#L155)
-in `crash.m`.
+in `crash.m`. To summarize, the problem will not occur if we take any **one** of the following actions
+**before** copying the source files from the source directory to the build directory.
+
+1. Clear the mex function to be compiled before compiling it, in case there is a previously compiled
+   version in the current workspace.
+2. In the source directory, remove any file with the same name as the mex file to be compiled.
+3. In the build directory,  remove any file with the same name as the mex file to be compiled.
+
+However, doing any one of them **after** copying the source files cannot solve the problem ---
+MATLAB will still crash, but this time during the copying.
 
 
 ## Contact
