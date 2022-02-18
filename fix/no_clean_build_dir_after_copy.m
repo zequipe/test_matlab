@@ -50,27 +50,27 @@ elseif exist(src_dir, 'file')
     delete(src_dir);
 end
 
-mkdir(src_dir);
-
-if cind
-    % Create in the source directory a file with the same name as the mexified `timestwo`.
-    fake_mex_file_name = ['timestwo.', mexext];
-    fake_mex_file = fullfile(src_dir, fake_mex_file_name);
-    fprintf('\nCreate a fake %s file in the source directory ... ', fake_mex_file_name);
-    fclose(fopen(fake_mex_file, 'w'));
-    fprintf('Done.\n');
-end
-
-fprintf('\nCopy the official `%s` to the source directory ... ', timestwo_src_name);
-timestwo_src = fullfile(src_dir, timestwo_src_name);
-copyfile(official_timestwo_src, timestwo_src, 'f');
-fileattrib(timestwo_src, '+w');
-fprintf('Done.\n');
-
 
 % Conduct the tests.
 for itest = 1 : 2
     fprintf('\n************************* Test %d starts. *************************\n', itest);
+
+    mkdir(src_dir);
+
+    fprintf('\nCopy the official `%s` to the source directory ... ', timestwo_src_name);
+    timestwo_src = fullfile(src_dir, timestwo_src_name);
+    copyfile(official_timestwo_src, timestwo_src, 'f');
+    fileattrib(timestwo_src, '+w');
+    fprintf('Done.\n');
+
+    if cind
+        % Create in the source directory a file with the same name as the mexified `timestwo`.
+        fake_mex_file_name = ['timestwo.', mexext];
+        fake_mex_file = fullfile(src_dir, fake_mex_file_name);
+        fprintf('\nCreate a fake %s file in the source directory ... ', fake_mex_file_name);
+        fclose(fopen(fake_mex_file, 'w'));
+        fprintf('Done.\n');
+    end
 
     compile(src_dir, build_dir, timestwo_src_name, crash_type);
 
@@ -158,7 +158,7 @@ function copy_src(src_dir, build_dir)
 
 %clear('timestwo');  % This line alone can fix the crash
 
-delete(fullfile(src_dir, ['timestwo.', mexext]));  % This line alone can fix the crash
+%delete(fullfile(src_dir, ['timestwo.', mexext]));  % This line alone can fix the crash
 
 %if exist(build_dir, 'dir'); delete(fullfile(build_dir, ['timestwo.', mexext])); end  % This line alone can fix the crash
 
@@ -168,6 +168,6 @@ copyfile(src_dir, build_dir, 'f');
 
 %delete(fullfile(src_dir, ['timestwo.', mexext]));  % This line alone can NOT fix the crash
 
-%delete(fullfile(build_dir, ['timestwo.', mexext]));  % This line alone can NOT fix the crash
+delete(fullfile(build_dir, ['timestwo.', mexext]));  % This line alone can NOT fix the crash
 
 return

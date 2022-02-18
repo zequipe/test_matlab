@@ -1,4 +1,4 @@
-name: Crash MATLAB
+name: Successful fixes of the crash
 
 on:
   # Trigger the workflow on push or pull request
@@ -12,14 +12,14 @@ on:
 
 jobs:
   test:
-    name: Crash MATLAB during MEX setup or mexification
+    name: Fix the crash of MATLAB during MEX setup or mexification (successful)
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         crash_type: [default, setup, mex]
         crash_indicator : [true, false]
-        fix: [0_clean_build_dir_after_copy.m, 0_clean_src_dir_after_copy.m, 0_clear_mex_after_copy.m, 0_rmpath_before_copy.m, 1_clean_build_dir_after_copy.m, 1_clean_src_dir_after_copy.m, 1_clear_mex_before_copy.m]
+        fix: [yes_clean_build_dir_after_copy.m, yes_clean_src_dir_after_copy.m, yes_clear_mex_before_copy.m]
         exclude:
           - crash_type: default
             crash_indicator: false
