@@ -7,12 +7,19 @@ MATLAB concerning [`MEX`](https://www.mathworks.com/help/matlab/ref/mex.html).
 
 Run the following commands in the MATLAB command line under the directory containing `crash.m`.
 
+### Make MATLAB crash during `mex('-setup', 'C')`:
+
 ```matlab
-crash('setup');  % crash during `mex('-setup', 'C')`; running `crash` has the same effect
-crash('mex');  % crash during `mex(timestwo_src, '-outdir', build_dir)`
+crash('setup');  % running only `crash` has the same effect
 ```
 
-The above execution crashes MATLAB under Linux, which is confirmed on the following versions.
+### Make MATLAB crash during `mex(timestwo_src, '-outdir', build_dir)`:
+
+```matlab
+crash('mex');
+```
+
+The above commands crash MATLAB **under Linux**, as has been confirmed on the following versions.
 
 - R2018b Update 3 (9.5.0.1049112) 64-bit (glnxa64)
 - R2019b Update 5 (9.7.0.1319299) 64-bit (glnxa64)
