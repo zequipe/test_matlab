@@ -166,7 +166,7 @@ copyfile(src_dir, build_dir, 'f');
 
 %clear('timestwo')  % This line alone can NOT fix the crash
 
-%delete(fullfile(src_dir, ['timestwo.', mexext]));  % This line alone can NOT fix the crash
+delete(fullfile(src_dir, ['timestwo.', mexext]));  % This line alone can NOT fix the crash
 
 %delete(fullfile(build_dir, ['timestwo.', mexext]));  % This line alone can NOT fix the crash
 

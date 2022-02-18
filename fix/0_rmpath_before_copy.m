@@ -154,7 +154,7 @@ return
 
 function copy_src(src_dir, build_dir)
 
-%restoredefaultpath; % `restoredefaultpath` or `rmpath(build_dir)` alone can NOT fix the crash
+restoredefaultpath; % `restoredefaultpath` or `rmpath(build_dir)` alone can NOT fix the crash
 
 %clear('timestwo');  % This line alone can fix the crash
 

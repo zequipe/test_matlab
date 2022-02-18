@@ -156,7 +156,7 @@ function copy_src(src_dir, build_dir)
 
 %restoredefaultpath; % `restoredefaultpath` or `rmpath(build_dir)` alone can NOT fix the crash
 
-%clear('timestwo');  % This line alone can fix the crash
+clear('timestwo');  % This line alone can fix the crash
 
 %delete(fullfile(src_dir, ['timestwo.', mexext]));  % This line alone can fix the crash
 
@@ -168,6 +168,6 @@ copyfile(src_dir, build_dir, 'f');
 
 %delete(fullfile(src_dir, ['timestwo.', mexext]));  % This line alone can NOT fix the crash
 
-%delete(fullfile(build_dir, ['timestwo.', mexext]));  % This line alone can NOT fix the crash
+%if exist(build_dir, 'dir'); delete(fullfile(build_dir, ['timestwo.', mexext])); end  % This line alone can fix the crash
 
 return

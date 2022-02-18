@@ -160,7 +160,7 @@ function copy_src(src_dir, build_dir)
 
 %delete(fullfile(src_dir, ['timestwo.', mexext]));  % This line alone can fix the crash
 
-%if exist(build_dir, 'dir'); delete(fullfile(build_dir, ['timestwo.', mexext])); end  % This line alone can fix the crash
+if exist(build_dir, 'dir'); delete(fullfile(build_dir, ['timestwo.', mexext])); end  % This line alone can fix the crash
 
 copyfile(src_dir, build_dir, 'f');
 
