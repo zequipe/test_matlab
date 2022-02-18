@@ -13,10 +13,11 @@ on:
 jobs:
   test:
     name: Fix the crash of MATLAB during MEX setup or mexification (successful)
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
         crash_type: [default, setup, mex]
         crash_indicator : [true, false]
         fix: [yes_clean_build_dir_before_copy.m, yes_clean_src_dir_before_copy.m, yes_clear_mex_before_copy.m]
@@ -27,23 +28,14 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
 
-      - name: Check MATLAB
-        id: check_matlab
-        run: |
-            if type 'matlab' &> /dev/null ; then echo "::set-output name=has_matlab::true" ; fi
-
       - name: Set up MATLAB
-        if: ${{ steps.check_matlab.outputs.has_matlab != 'true' }}
-        uses: matlab-actions/setup-matlab@v1
-
-      - name: Prepare script
-        run: |
-            cp fix/${{ matrix.fix }} ./crash.m
+        uses: matlab-actions/setup-matlab@v1.1.0
 
       - name: Run script
         uses: matlab-actions/run-command@v1
         with:
           command: |
+              copyfile(fullfile(pwd(), 'fix', '${{ matrix.fix }}'), fullfile(pwd(), 'crash.m'));
               if strcmpi('${{ matrix.crash_type }}', 'default')
                   if ${{ matrix.crash_indicator }}
                       crash;
