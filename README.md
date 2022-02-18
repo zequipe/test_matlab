@@ -50,9 +50,9 @@ To summarize, MATLAB will stop crashing if we take any **one** of the following 
 
 However, doing any one of them **after** copying the source files cannot solve the problem:
 MATLAB will still crash, but this time during the copying
-([`no_clear_mex_before_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/fix/no_clear_mex_before_copy.m),
-[`no_clean_src_dir_before_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/fix/no_clean_src_dir_before_copy.m),
-[`no_clean_build_dir_before_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/fix/no_clean_build_dir_before_copy.m)).
+([`no_clear_mex_after_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/fix/no_clear_mex_after_copy.m),
+[`no_clean_src_dir_after_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/fix/no_clean_src_dir_after_copy.m),
+[`no_clean_build_dir_after_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/fix/no_clean_build_dir_after_copy.m)).
 
 
 ## Contact
