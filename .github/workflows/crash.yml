@@ -1,4 +1,4 @@
-name: Crash MATLAB
+name: Crash MATLAB (expect 3 failures, 2 successes)
 
 on:
   # Trigger the workflow on push or pull request
