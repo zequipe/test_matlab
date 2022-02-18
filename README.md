@@ -32,18 +32,27 @@ been tested.
 
 ## How to fix the problem?
 
-Before MathWorks fixes the bug, the crash can be avoided according to the comments in the function
-[`copy_src`](https://github.com/zaikunzhang/test_matlab/blob/e8b16e11624e44f2c7702453994a0d322c6b208b/crash.m#L155)
-in `crash.m`. To summarize, the problem will not occur if we take any **one** of the following actions
+Before MathWorks fixes the bug, the crash can be avoided as demonstrated in the
+[`fix` directory](https://github.com/zaikunzhang/test_matlab/tree/master/fix), where each script
+starting with `yes_` is a **slightly** modified version
+of [`crash.m`](https://github.com/zaikunzhang/test_matlab/blob/master/crash.m) that does not suffer from the bug.
+The scripts starting with `no_` illustrates some modifications that fail to solve the problem.
+
+To summarize, MATLAB will stop crashing if we take any **one** of the following actions
 **before** copying the source files from the source directory to the build directory.
 
-1. Clear the mex function to be compiled before compiling it, in case there is a previously compiled
-   version in the current workspace.
-2. In the source directory, remove any file with the same name as the mex file to be compiled.
-3. In the build directory,  remove any file with the same name as the mex file to be compiled.
+1. Clear the mex function to be compiled before compiling it
+([`yes_clear_mex_before_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/fix/yes_clear_mex_before_copy.m)).
+2. In the source directory, remove any file with the same name as the mex file to be compiled
+([`yes_clean_src_dir_before_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/fix/yes_clean_src_dir_before_copy.m)).
+3. In the build directory, remove any file with the same name as the mex file to be compiled
+([`yes_clean_build_dir_before_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/fix/yes_clean_build_dir_before_copy.m)).
 
-However, doing any one of them **after** copying the source files cannot solve the problem ---
-MATLAB will still crash, but this time during the copying.
+However, doing any one of them **after** copying the source files cannot solve the problem:
+MATLAB will still crash, but this time during the copying
+([`no_clear_mex_before_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/fix/no_clear_mex_before_copy.m),
+[`no_clean_src_dir_before_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/fix/no_clean_src_dir_before_copy.m),
+[`no_clean_build_dir_before_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/fix/no_clean_build_dir_before_copy.m)).
 
 
 ## Contact
