@@ -13,10 +13,11 @@ on:
 jobs:
   test:
     name: Crash MATLAB during MEX setup or mexification
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
         crash_type: [default, setup, mex]
         crash_indicator : [true, false]
         exclude:
@@ -33,7 +34,7 @@ jobs:
 
       - name: Set up MATLAB
         if: ${{ steps.check_matlab.outputs.has_matlab != 'true' }}
-        uses: matlab-actions/setup-matlab@v1
+        uses: matlab-actions/setup-matlab@v1.1.0
 
       - name: Run script
         uses: matlab-actions/run-command@v1
