@@ -13,7 +13,7 @@ end
 cind = (nargin < 2 || crash_indicator);
 
 if nargin < 3 || ~(isa(language, 'char') || isa(language, 'str'))
-    language = 'C';
+    language = 'Fortran';
 end
 
 
