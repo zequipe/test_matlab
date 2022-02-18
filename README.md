@@ -41,7 +41,7 @@ Before MathWorks fixes the bug, the crash can be avoided as demonstrated in the
 [`fix` directory](https://github.com/zaikunzhang/test_matlab/tree/master/fix), where each script
 starting with `yes_` is a **slightly** modified version
 of [`crash.m`](https://github.com/zaikunzhang/test_matlab/blob/master/crash.m) that does not suffer from the bug.
-The scripts starting with `no_` illustrates some modifications that fail to solve the problem.
+The scripts starting with `no_` illustrate some modifications that fail to solve the problem.
 
 To summarize, MATLAB will stop crashing if we take any **one** of the following actions
 **before** copying the source files from the source directory to the build directory.
