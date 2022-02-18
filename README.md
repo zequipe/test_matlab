@@ -1,7 +1,7 @@
 ## Introduction
 
 [`crash.m`](https://github.com/zaikunzhang/test_matlab/blob/master/crash.m) illustrates a bug of
-MATLAB concerning [`MEX`](https://www.mathworks.com/help/matlab/ref/mex.html).
+the **Linux** version of MATLAB concerning [`MEX`](https://www.mathworks.com/help/matlab/ref/mex.html).
 
 ## How to crash MATLAB?
 
@@ -31,8 +31,13 @@ GitHub Action [`Crash MATLAB`](https://github.com/zaikunzhang/test_matlab/action
 To reproduce the crash on your own machine, your MATLAB has to have `MEX` configured for compiling `Fortran`.
 On Linux, normally you only need to install `gfortran` and then run `mex('-setup', 'Fortran')` in MATLAB.
 
-According to limited tests, the bug does not affect the macOS version of MATLAB. Windows has not
-been tested.
+According to limited tests, the bug does not affect the macOS version of MATLAB. On Windows,
+Windows will raise an error that
+```
+Error using crash>copy_src (line 165)
+  The process cannot access the file because it is being used by another process.
+```
+This is much more decent than crashing!
 
 
 ## How to fix the problem?

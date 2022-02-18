@@ -1,4 +1,4 @@
-name: Unsuccessful fixes of the crash (expect 12 failures, 8 successes)
+name: Unsuccessful fixes of the crash (expect 12 crashes on Linux and 12 normal errors on Windows)
 
 on:
   # Trigger the workflow on push or pull request
