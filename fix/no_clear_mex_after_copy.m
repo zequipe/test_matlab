@@ -30,24 +30,24 @@ official_timestwo_src = fullfile(matlabroot, 'extern', 'examples', 'refbook', ti
 
 
 % Directories.
+
+% The test directory.
 test_dir = pwd();
-build_dir = fullfile(test_dir, 'build');
+
+% The source directory.
 src_dir = fullfile(test_dir, 'src');
-
-
-% Prepare the build directory.
-if exist(build_dir, 'dir')
-    rmdir(build_dir, 's');
-elseif exist(build_dir, 'file')
-    delete(build_dir);
-end
-
-
-% Prepare the source directory.
 if exist(src_dir, 'dir')
     rmdir(src_dir, 's');
 elseif exist(src_dir, 'file')
     delete(src_dir);
+end
+
+% The build directory.
+build_dir = fullfile(test_dir, 'build');
+if exist(build_dir, 'dir')
+    rmdir(build_dir, 's');
+elseif exist(build_dir, 'file')
+    delete(build_dir);
 end
 
 
