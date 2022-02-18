@@ -1,0 +1,57 @@
+name: Crash MATLAB
+
+on:
+  # Trigger the workflow on push or pull request
+  push:
+  #pull_request:  # DANGEROUS! MUST be disabled for self-hosted runners!
+  # Trigger the workflow by cron. The default time zone of GitHub Actions is UTC.
+  schedule:
+    - cron: '0 18 * * *'
+  # Trigger the workflow when it is manually triggered
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Crash MATLAB during MEX setup or mexification
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        crash_type: [default, setup, mex]
+        crash_indicator : [true, false]
+        fix: [0_clean_build_dir_after_copy.m, 0_clean_src_dir_after_copy.m, 0_clear_mex_after_copy.m, 0_rmpath_before_copy.m, 1_clean_build_dir_after_copy.m, 1_clean_src_dir_after_copy.m, 1_clear_mex_before_copy.m]
+        exclude:
+          - crash_type: default
+            crash_indicator: false
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Check MATLAB
+        id: check_matlab
+        run: |
+            if type 'matlab' &> /dev/null ; then echo "::set-output name=has_matlab::true" ; fi
+
+      - name: Set up MATLAB
+        if: ${{ steps.check_matlab.outputs.has_matlab != 'true' }}
+        uses: matlab-actions/setup-matlab@v1
+
+      - name: Prepare script
+        run: |
+            cp fix/${{ matrix.fix }} ./crash.m
+
+      - name: Run script
+        uses: matlab-actions/run-command@v1
+        with:
+          command: |
+              if strcmpi('${{ matrix.crash_type }}', 'default')
+                  if ${{ matrix.crash_indicator }}
+                      crash;
+                  end
+              else
+                  if ${{ matrix.crash_indicator }}
+                      crash('${{ matrix.crash_type }}')
+                  else
+                      crash('${{ matrix.crash_type }}', false)
+                  end
+              end
