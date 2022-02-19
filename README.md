@@ -52,7 +52,7 @@ First, note that `crash.m` carries out the following four steps.
 * **Step 3**. Call `mex` to compile `timestwo.c` in `build`, and then run `timestwo(1)`;
 * **Step 4**. Redo the first three steps.
 
-It is the **`timestwo.mexa64` contained in the `src` directory** in **Step 1** that causes the crash.
+It is the **`timestwo.mexa64` contained in the `src` directory** that causes the crash.
 
 Why? In **Step 3**, a `timestwo.mexa64` is created in the `build` directory, and then loaded into the
 memory when `timestwo(2)` is invoked. When we redo **Steps 1** and **2**, MATLAB will try replacing the
