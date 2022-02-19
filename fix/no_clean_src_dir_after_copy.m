@@ -13,7 +13,7 @@ end
 cind = (nargin < 2 || crash_indicator);
 
 if nargin < 3 || ~(isa(language, 'char') || isa(language, 'str'))
-    language = 'Fortran';
+    language = 'C';
 end
 
 
@@ -84,7 +84,7 @@ for itest = 1 : 2
 end
 
 
-return
+end
 
 
 
@@ -144,7 +144,7 @@ addpath(build_dir);
 fprintf('Done.\n');
 
 
-return
+end
 
 
 
@@ -170,4 +170,4 @@ delete(fullfile(src_dir, ['timestwo.', mexext]));  % This line alone can NOT fix
 
 %delete(fullfile(build_dir, ['timestwo.', mexext]));  % This line alone can NOT fix the crash
 
-return
+end
