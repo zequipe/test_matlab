@@ -17,7 +17,8 @@ crash('setup');  % running only `crash` has the same effect
 crash('mex');
 ```
 
-The above commands crash MATLAB **under Linux**, as has been confirmed on the following versions.
+The above commands crash MATLAB **under Linux**, as has been confirmed on the following editions of
+MATLAB.
 
 - R2018b Update 3 (9.5.0.1049112) 64-bit (glnxa64)
 - R2019b Update 5 (9.7.0.1319299) 64-bit (glnxa64)
@@ -62,7 +63,7 @@ access the file because it is being used by another process", where "the file" s
 the `timestwo.mexa64` in `build`; on Linux, however, MATLAB does something wrong and corrupted the
 memory, leading to the crash.
 
-In this case, MATLAB has done a good job on Windows. Meanwhile the macOS version handles everythig
+In this case, MATLAB does a good job on Windows. Meanwhile, the macOS version handles everything
 nicely without any error, which seems more desirable.
 
 
