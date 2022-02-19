@@ -56,11 +56,11 @@ First, note that `crash.m` carries out the following four steps.
 It is the **`timestwo.mexa64` contained in the `src` directory** that causes the crash.
 
 Why? In **Step 3**, a `timestwo.mexa64` is created in the `build` directory, and then loaded into the
-memory when `timestwo(2)` is invoked. When we redo **Steps 1** and **2**, MATLAB will try replacing the
-`timestwo.mexa64` contained in `build` by the one from `src` --- but note that the former has been
-loaded into the memory! On Windows, MATLAB detects the conflict and tells us that "The process cannot
+memory when `timestwo(2)` is invoked. When we redo **Steps 1** and **2**, MATLAB tries replacing the
+`timestwo.mexa64` contained in `build` with the one from `src`, while the former has been
+loaded into the memory. On Windows, MATLAB detects the conflict and tells us that "The process cannot
 access the file because it is being used by another process", where "the file" seems to refer to
-the `timestwo.mexa64` in `build`; on Linux, however, MATLAB does something wrong and corrupted the
+the `timestwo.mexa64` in `build`; on Linux, however, MATLAB does something wrong and corrupts the
 memory, leading to the crash.
 
 In this case, MATLAB does a good job on Windows. Meanwhile, the macOS version handles everything
@@ -93,7 +93,7 @@ MATLAB will still crash, but this time during the copying
 ([`no_clear_mex_after_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/fix/no_clear_mex_after_copy.m),
 [`no_clean_src_dir_after_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/fix/no_clean_src_dir_after_copy.m),
 [`no_clean_build_dir_after_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/fix/no_clean_build_dir_after_copy.m)).
-This is simply because they cannot resolve the conflict specified above.
+This is simply because they cannot resolve the conflict described above.
 
 ## Contact
 
