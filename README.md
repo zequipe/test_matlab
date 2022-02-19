@@ -29,7 +29,7 @@ MATLAB.
 If you want to see how the crash looks like, check the
 GitHub Action [`Crash MATLAB`](https://github.com/zaikunzhang/test_matlab/actions) of this repo.
 
-To reproduce the crash on your own machine, your MATLAB has to have `MEX` configured for compiling `C`.
+To run `crash.m`, your MATLAB has to have `MEX` configured for compiling `C`.
 Normally you only need to install `gcc` and then run `mex('-setup', 'C')` in MATLAB.
 
 According to limited tests, the bug does not affect the macOS version of MATLAB. On Windows,
