@@ -45,7 +45,7 @@ This is much more decent than crashing!
 Comparing the behaviors of MATLAB under Linux and Windows when executing `crash.m`, here is my
 speculation about the cause for the crash.
 
-What `crash.m` does is simple:
+First, note that `crash.m` carries out the following four steps.
 
 * **Step 1**. Create a source directory named `src` containing `timestwo.c` **and `timestwo.mexa64`**;
 * **Step 2**. Copy the source directory `src` to a build directory named `build`;
@@ -57,7 +57,7 @@ It is the **`timestwo.mexa64` contained in the `src` directory** in **Step 1** t
 Why? In **Step 3**, a `timestwo.mexa64` is created in the `build` directory, and then loaded into the
 memory when `timestwo(2)` is invoked. When we redo **Steps 1** and **2**, MATLAB will try replacing the
 `timestwo.mexa64` contained in `build` by the one from `src` --- but note that the former has been
-loaded into the memory! On Windows, MATLAB detects the problem and tells us that "The process cannot
+loaded into the memory! On Windows, MATLAB detects the conflict and tells us that "The process cannot
 access the file because it is being used by another process", where "the file" seems to refer to
 the `timestwo.mexa64` in `build`; on Linux, however, MATLAB does something wrong and corrupted the
 memory, leading to the crash.
@@ -84,12 +84,15 @@ To summarize, MATLAB will stop crashing if we take any **one** of the following 
 3. In the build directory, remove any file with the same name as the mex file to be compiled
 ([`yes_clean_build_dir_before_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/fix/yes_clean_build_dir_before_copy.m)).
 
-However, doing any one of them **after** copying the source files cannot solve the problem:
+Any one of these there actions will resolve the conflict between the `timestwo.mexa64` in `build` (and loaded into the memory)
+and the one in `src` when we redo **Step 2** mentioned above.
+
+However, doing any one of them **after** copying the source files cannot solve the problem.
 MATLAB will still crash, but this time during the copying
 ([`no_clear_mex_after_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/fix/no_clear_mex_after_copy.m),
 [`no_clean_src_dir_after_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/fix/no_clean_src_dir_after_copy.m),
 [`no_clean_build_dir_after_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/fix/no_clean_build_dir_after_copy.m)).
-
+This is simply because they cannot resolve the conflict specified above.
 
 ## Contact
 
