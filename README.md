@@ -40,7 +40,33 @@ Error using crash>copy_src (line 165)
 This is much more decent than crashing!
 
 
-## How to fix the problem?
+## Why does MATLAB crash in this case?
+
+Comparing the behaviors of MATLAB under Linux and Windows when executing `crash.m`, here is my
+speculation about the cause for the crash.
+
+What `crash.m` does is simple:
+
+* **Step 1**. Create a source directory named `src` containing `timestwo.c` **and `timestwo.mexa64`**;
+* **Step 2**. Copy the source directory `src` to a build directory named `build`;
+* **Step 3**. Call `mex` to compile `timestwo.c` in `build`, and then run `timestwo(1)`;
+* **Step 4**. Redo the first three steps.
+
+It is the **`timestwo.mexa64` contained in the `src` directory** in **Step 1** that causes the crash.
+
+Why? In **Step 3**, a `timestwo.mexa64` is created in the `build` directory, and then loaded into the
+memory when `timestwo(2)` is invoked. When we redo **Steps 1** and **2**, MATLAB will try replacing the
+`timestwo.mexa64` contained in `build` by the one from `src` --- but note that the former has been
+loaded into the memory! On Windows, MATLAB detects the problem and tells us that "The process cannot
+access the file because it is being used by another process", where "the file" seems to refer to
+the `timestwo.mexa64` in `build`; on Linux, however, MATLAB does something wrong and corrupted the
+memory, leading to the crash.
+
+In this case, MATLAB has done a good job on Windows. Meanwhile the macOS version handles everythig
+nicely without any error, which seems more desirable.
+
+
+## How to avoid the crash?
 
 Before MathWorks fixes the bug, the crash can be avoided as demonstrated in the
 [`fix` directory](https://github.com/zaikunzhang/test_matlab/tree/master/fix), where each script
