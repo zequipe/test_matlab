@@ -44,13 +44,10 @@ jobs:
           key: install-${{ env.MACOS_HPCKIT_URL }}-${{ env.MACOS_FORTRAN_COMPONENTS }}
       - name: install Intel oneAPI on macOS
         if: matrix.os == 'macos-latest' && matrix.latest == 'Fortran' && steps.cache-install-macos.outputs.cache-hit != 'true'
-        run: .github/scripts/install_macos.sh $MACOS_HPCKIT_URL $MACOS_FORTRAN_COMPONENTS
+        run: bash .github/scripts/install_oneapi_macos.sh $MACOS_HPCKIT_URL $MACOS_FORTRAN_COMPONENTS
       - name: Run setvars.sh make symlinks on macOS
         if: matrix.os == 'macos-latest' && matrix.latest == 'Fortran'
-        run: |
-            source /opt/intel/oneapi/setvars.sh
-            sudo mkdir -p /usr/local/bin
-            sudo ln -s $(which ifort) /usr/local/bin
+        run: bash .github/scripts/intelvars_macos.sh
 
 
       - name: Set up MATLAB
