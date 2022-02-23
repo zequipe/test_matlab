@@ -27,7 +27,7 @@ MATLAB.
 - R2021b Update 1 (9.11.0.1809720) (glnxa64)
 
 If you want to see how the crash looks like, check the
-GitHub Action [`Crash MATLAB`](https://github.com/zaikunzhang/test_matlab/actions) of this repo.
+GitHub Action [`Crash MATLAB`](https://github.com/equipez/test_matlab/actions/workflows/crash.yml) of this repo.
 
 To run `crash.m`, your MATLAB has to have `MEX` configured for compiling `C`.
 Normally you only need to install `gcc` and then run `mex('-setup', 'C')` in MATLAB.
