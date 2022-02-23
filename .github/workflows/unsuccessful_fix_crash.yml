@@ -17,7 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest, macos-latest, windows-2019]  # MEX does not work on windows-latest yet
         crash_type: [default, setup, mex]
         crash_indicator : [true, false]
         fix: [no_clean_build_dir_after_copy.m, no_clean_src_dir_after_copy.m, no_clear_mex_after_copy.m, no_rmpath_before_copy.m]

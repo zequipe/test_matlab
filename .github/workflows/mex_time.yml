@@ -45,7 +45,7 @@ jobs:
       - name: install Intel oneAPI on macOS
         if: matrix.os == 'macos-latest' && matrix.language == 'Fortran' && steps.cache-install-macos.outputs.cache-hit != 'true'
         run: bash .github/scripts/install_oneapi_macos.sh $MACOS_HPCKIT_URL $MACOS_FORTRAN_COMPONENTS
-      - name: Run setvars.sh make symlinks on macOS
+      - name: Run setvars.sh and make symlinks on macOS
         if: matrix.os == 'macos-latest' && matrix.language == 'Fortran'
         run: bash .github/scripts/intelvars_macos.sh
 
