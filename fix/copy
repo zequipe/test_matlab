@@ -1,7 +1,0 @@
-cp ../crash.m no_clean_build_dir_after_copy.m
-cp ../crash.m no_clean_src_dir_after_copy.m
-cp ../crash.m no_clear_mex_after_copy.m
-cp ../crash.m no_rmpath_before_copy.m
-cp ../crash.m yes_clean_build_dir_before_copy.m
-cp ../crash.m yes_clean_src_dir_before_copy.m
-cp ../crash.m yes_clear_mex_before_copy.m

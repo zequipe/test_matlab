@@ -6,7 +6,7 @@ on:
   #pull_request:  # DANGEROUS! MUST be disabled for self-hosted runners!
   # Trigger the workflow by cron. The default time zone of GitHub Actions is UTC.
   schedule:
-      - cron: '0 19 * * *'
+      - cron: '0 20 * * *'
   # Trigger the workflow when it is manually triggered
   workflow_dispatch:
 
@@ -43,10 +43,10 @@ jobs:
           path: /opt/intel/oneapi
           key: install-${{ env.MACOS_HPCKIT_URL }}-${{ env.MACOS_FORTRAN_COMPONENTS }}
       - name: install Intel oneAPI on macOS
-        if: matrix.os == 'macos-latest' && matrix.latest == 'Fortran' && steps.cache-install-macos.outputs.cache-hit != 'true'
+        if: matrix.os == 'macos-latest' && matrix.language == 'Fortran' && steps.cache-install-macos.outputs.cache-hit != 'true'
         run: bash .github/scripts/install_oneapi_macos.sh $MACOS_HPCKIT_URL $MACOS_FORTRAN_COMPONENTS
       - name: Run setvars.sh make symlinks on macOS
-        if: matrix.os == 'macos-latest' && matrix.latest == 'Fortran'
+        if: matrix.os == 'macos-latest' && matrix.language == 'Fortran'
         run: bash .github/scripts/intelvars_macos.sh
 
 
