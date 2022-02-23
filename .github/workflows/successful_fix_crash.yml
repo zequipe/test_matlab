@@ -1,4 +1,4 @@
-name: Unsuccessful fixes of the crash (expect 12 crashes on Linux and 12 normal errors on Windows)
+name: Successful fixes of the crash (all should be successes)
 
 on:
   # Trigger the workflow on push or pull request
@@ -12,7 +12,7 @@ on:
 
 jobs:
   test:
-    name: Fix the crash of MATLAB during MEX setup or mexification (unsuccessful)
+    name: Fix the crash of MATLAB during MEX setup or mexification (successful)
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -20,7 +20,7 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
         crash_type: [default, setup, mex]
         crash_indicator : [true, false]
-        fix: [no_clean_build_dir_after_copy.m, no_clean_src_dir_after_copy.m, no_clear_mex_after_copy.m, no_rmpath_before_copy.m]
+        fix: [yes_clean_build_dir_before_copy.m, yes_clean_src_dir_before_copy.m, yes_clear_mex_before_copy.m]
         exclude:
           - crash_type: default
             crash_indicator: false
@@ -35,6 +35,7 @@ jobs:
         uses: matlab-actions/run-command@v1
         with:
           command: |
+              cd('crash');
               copyfile(fullfile(pwd(), 'fix', '${{ matrix.fix }}'), fullfile(pwd(), 'crash.m'));
               if strcmpi('${{ matrix.crash_type }}', 'default')
                   if ${{ matrix.crash_indicator }}

@@ -1,0 +1,79 @@
+name: Test running time concerning MEX
+
+on:
+  # Trigger the workflow on push or pull request
+  push:
+  #pull_request:  # DANGEROUS! MUST be disabled for self-hosted runners!
+  # Trigger the workflow by cron. The default time zone of GitHub Actions is UTC.
+  schedule:
+      - cron: '0 19 * * *'
+  # Trigger the workflow when it is manually triggered
+  workflow_dispatch:
+
+env:
+  MACOS_HPCKIT_URL: https://registrationcenter-download.intel.com/akdlm/irc_nas/18341/m_HPCKit_p_2022.1.0.86_offline.dmg
+  MACOS_FORTRAN_COMPONENTS: intel.oneapi.mac.ifort-compiler
+
+jobs:
+  test:
+    name: Test running time concerning MEX
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        bitness: [32, 64]
+        language: [C, Fortran]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+
+      - name: prepare for cache restore for Intel oneAPI on macOS
+        if: matrix.os == 'macos-latest' && matrix.language == 'Fortran'
+        run: |
+          sudo mkdir -p /opt/intel
+          sudo chown $USER /opt/intel
+      - name: cache install Intel oneAPI on macOS
+        if: matrix.os == 'macos-latest' && matrix.language == 'Fortran'
+        id: cache-install-macos
+        uses: actions/cache@v2
+        with:
+          path: /opt/intel/oneapi
+          key: install-${{ env.MACOS_HPCKIT_URL }}-${{ env.MACOS_FORTRAN_COMPONENTS }}
+      - name: install Intel oneAPI on macOS
+        if: matrix.os == 'macos-latest' && matrix.latest == 'Fortran' && steps.cache-install-macos.outputs.cache-hit != 'true'
+        run: .github/scripts/install_macos.sh $MACOS_HPCKIT_URL $MACOS_FORTRAN_COMPONENTS
+      - name: Run setvars.sh make symlinks on macOS
+        if: matrix.os == 'macos-latest' && matrix.latest == 'Fortran'
+        run: |
+            source /opt/intel/oneapi/setvars.sh
+            sudo mkdir -p /usr/local/bin
+            sudo ln -s $(which ifort) /usr/local/bin
+
+
+      - name: Set up MATLAB
+        uses: matlab-actions/setup-matlab@v1.1.0
+
+      - name: Run script
+        uses: matlab-actions/run-command@v1
+        with:
+          command: |
+              lang = '${{ matrix.language }}';
+              if strcmp(lang, 'Fortran')
+                  timestwo_src = 'timestwo.F';
+              else
+                  timestwo_src = 'timestwo.c';
+              end
+              tic;
+              mex('-setup', '-v', lang);
+              fprintf('\n\n=======> Time for setting MEX up: %f\n\n', toc);
+              tic
+              mex(fullfile(matlabroot, 'extern', 'examples', 'refbook', timestwo_src));
+              fprintf('\n\n=======> Time for mexifying timestwo: %f\n\n', toc);
+              tic
+              for i = 1 : 100
+                  timestwo(i);
+              end
+              fprintf('\n\n=======> Time for 100 runs of timestwo: %f\n\n', toc);
