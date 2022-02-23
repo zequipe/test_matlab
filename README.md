@@ -1,6 +1,6 @@
 ## Introduction
 
-[`crash.m`](https://github.com/zaikunzhang/test_matlab/blob/master/crash.m) illustrates a bug of
+[`crash/crash.m`](https://github.com/equipez/test_matlab/blob/master/crash/crash.m) illustrates a bug of
 the **Linux** version of MATLAB concerning [`MEX`](https://www.mathworks.com/help/matlab/ref/mex.html).
 
 ## How to crash MATLAB?
@@ -56,11 +56,11 @@ First, note that `crash.m` carries out the following four steps.
 It is the **`timestwo.mexa64` contained in the `src` directory** that causes the crash.
 
 Why? In **Step 3**, a `timestwo.mexa64` is created in the `build` directory, and then loaded into the
-memory when `timestwo(2)` is invoked. When we redo **Steps 1** and **2**, MATLAB tries replacing the
+memory when `timestwo(1)` is invoked. When we redo **Steps 1** and **2**, MATLAB tries replacing the
 `timestwo.mexa64` contained in `build` with the one from `src`, while the former has been
 loaded into the memory. On Windows, MATLAB detects the conflict and tells us that "The process cannot
 access the file because it is being used by another process", where "the file" seems to refer to
-the `timestwo.mexa64` in `build`; on Linux, however, MATLAB does something wrong and corrupts the
+the `timestwo.mexa64` in `build`; on Linux, however, MATLAB does something wrong that corrupts the
 memory, leading to the crash.
 
 In this case, MATLAB does a good job on Windows. Meanwhile, the macOS version handles everything
@@ -70,29 +70,29 @@ nicely without any error, which seems more desirable.
 ## How to avoid the crash?
 
 Before MathWorks fixes the bug, the crash can be avoided as demonstrated in the
-[`fix` directory](https://github.com/zaikunzhang/test_matlab/tree/master/fix), where each script
+[`crash/fix` directory](https://github.com/equipez/test_matlab/tree/master/crash/fix), where each script
 starting with `yes_` is a **slightly** modified version
-of [`crash.m`](https://github.com/zaikunzhang/test_matlab/blob/master/crash.m) that does not suffer from the bug.
+of [`crash/crash.m`](https://github.com/equipez/test_matlab/blob/master/crash/crash.m) that does not suffer from the bug.
 The scripts starting with `no_` illustrate some modifications that fail to solve the problem.
 
 To summarize, MATLAB will stop crashing if we take any **one** of the following actions
 **before** copying the source files from the source directory to the build directory.
 
 1. Clear the mex function to be compiled before compiling it
-([`yes_clear_mex_before_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/fix/yes_clear_mex_before_copy.m)).
-2. In the source directory, remove any file with the same name as the mex file to be compiled
-([`yes_clean_src_dir_before_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/fix/yes_clean_src_dir_before_copy.m)).
-3. In the build directory, remove any file with the same name as the mex file to be compiled
-([`yes_clean_build_dir_before_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/fix/yes_clean_build_dir_before_copy.m)).
+([`yes_clear_mex_before_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/crash/fix/yes_clear_mex_before_copy.m)).
+2. In the source directory, remove the file with the same name as the mex file to be compiled
+([`yes_clean_src_dir_before_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/crash/fix/yes_clean_src_dir_before_copy.m)).
+3. In the build directory, remove the file with the same name as the mex file to be compiled
+([`yes_clean_build_dir_before_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/crash/fix/yes_clean_build_dir_before_copy.m)).
 
 Any one of these there actions will resolve the conflict between the `timestwo.mexa64` in `build` (and loaded into the memory)
 and the one in `src` when we redo **Step 2** mentioned above.
 
 However, doing any one of them **after** copying the source files cannot solve the problem.
 MATLAB will still crash, but this time during the copying
-([`no_clear_mex_after_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/fix/no_clear_mex_after_copy.m),
-[`no_clean_src_dir_after_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/fix/no_clean_src_dir_after_copy.m),
-[`no_clean_build_dir_after_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/fix/no_clean_build_dir_after_copy.m)).
+([`no_clear_mex_after_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/crash/fix/no_clear_mex_after_copy.m),
+[`no_clean_src_dir_after_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/crash/fix/no_clean_src_dir_after_copy.m),
+[`no_clean_build_dir_after_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/crash/fix/no_clean_build_dir_after_copy.m)).
 This is simply because they cannot resolve the conflict described above.
 
 ## Contact
