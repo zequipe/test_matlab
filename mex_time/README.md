@@ -1,8 +1,8 @@
 ## Introduction
 
 [`mex_time.m`](https://github.com/equipez/test_matlab/blob/master/mex_time/mex_time.m) tests the
-running time of MATLAB concerning `MEX`, in particular on GitHub Actions. See the action "[Test running time concerning MEX]
-(https://github.com/equipez/test_matlab/actions/workflows/mex_time.yml)" for the results.
+running time of MATLAB concerning `MEX`, in particular on GitHub Actions. See the action
+"[Test running time concerning MEX](https://github.com/equipez/test_matlab/actions/workflows/mex_time.yml)" for the results.
 
 Here is the data obtained by the [action on 23 February 2022](https://github.com/equipez/test_matlab/actions/runs/1885237017).
 ```
