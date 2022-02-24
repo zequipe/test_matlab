@@ -2,7 +2,7 @@ name: Unsuccessful fixes of the crash (expect 12 crashes on Linux and 12 normal 
 
 on:
   # Trigger the workflow on push or pull request
-  push:
+  #push:
   #pull_request:  # DANGEROUS! MUST be disabled for self-hosted runners!
   # Trigger the workflow by cron. The default time zone of GitHub Actions is UTC.
   schedule:

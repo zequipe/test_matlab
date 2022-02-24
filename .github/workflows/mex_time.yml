@@ -57,20 +57,5 @@ jobs:
         uses: matlab-actions/run-command@v1
         with:
           command: |
-              lang = '${{ matrix.language }}';
-              if strcmp(lang, 'Fortran')
-                  timestwo_src = 'timestwo.F';
-              else
-                  timestwo_src = 'timestwo.c';
-              end
-              tic;
-              mex('-setup', '-v', lang);
-              fprintf('\n\n=======> Time for setting MEX up: %f\n\n', toc);
-              tic
-              mex(fullfile(matlabroot, 'extern', 'examples', 'refbook', timestwo_src));
-              fprintf('\n\n=======> Time for mexifying timestwo: %f\n\n', toc);
-              tic
-              for i = 1 : 100
-                  timestwo(i);
-              end
-              fprintf('\n\n=======> Time for 100 runs of timestwo: %f\n\n', toc);
+              cd('mex_time');
+              mex_time('${{ matrix.language }}');
