@@ -3,7 +3,7 @@
 [`crash.m`](https://github.com/equipez/test_matlab/blob/master/crash/crash.m) illustrates a bug of
 the **Linux** version of MATLAB concerning [`MEX`](https://www.mathworks.com/help/matlab/ref/mex.html).
 
-## How to crash MATLAB?
+## How to crash MATLAB (on Linux)?
 
 Run the following commands in the MATLAB command line under the directory containing `crash.m`.
 
