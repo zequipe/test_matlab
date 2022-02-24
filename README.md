@@ -8,7 +8,7 @@ the **Linux** version of MATLAB concerning [`MEX`](https://www.mathworks.com/hel
 
 - [`mex_time`](https://github.com/equipez/test_matlab/blob/master/mex_time) tests the
 running time of MATLAB concerning `MEX`,
-in particular on [GitHub Actions](https://github.com/equipez/test_matlab/actions/workflows/mex_time.yml)"
+in particular on [GitHub Actions](https://github.com/equipez/test_matlab/actions/workflows/mex_time.yml)
 [[README](https://github.com/equipez/test_matlab/blob/master/mex_time/README.md)].
 
 ## Contact
