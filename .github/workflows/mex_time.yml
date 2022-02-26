@@ -50,26 +50,24 @@ jobs:
 
 
       - name: cache install Intel oneAPI on Windows
-        if: startsWith(matrix.os, 'windows')
+        if: startsWith(matrix.os, 'windows') && matrix.language == 'Fortran'
         id: cache-install-windows
         uses: actions/cache@v2
         with:
           path: C:\Program Files (x86)\Intel\oneAPI\compiler
           key: install-${{ env.WINDOWS_HPCKIT_URL }}-${{ env.WINDOWS_FORTRAN_COMPONENTS }}-compiler-${{ hashFiles('**/.github/scripts/cache_exclude_oneapi_windows.sh') }}
       - name: install Intel oneAPI on Windows
-        if: startsWith(matrix.os, 'windows') && steps.cache-install-windows.outputs.cache-hit != 'true'
+        if: startsWith(matrix.os, 'windows') && matrix.language == 'Fortran' && steps.cache-install-windows.outputs.cache-hit != 'true'
         shell: bash
         run: .github/scripts/install_oneapi_windows.bat $WINDOWS_HPCKIT_URL $WINDOWS_FORTRAN_COMPONENTS
       - name: exclude unused files from cache for Intel oneAPI on Windows
-        if: startsWith(matrix.os, 'windows') && steps.cache-install-windows.outputs.cache-hit != 'true'
+        if: startsWith(matrix.os, 'windows') && matrix.language == 'Fortran' && steps.cache-install-windows.outputs.cache-hit != 'true'
         shell: bash
         run: .github/scripts/cache_exclude_oneapi_windows.sh
       - name: Run intelvars_windows.bat
-        if: startsWith(matrix.os, 'windows')
+        if: startsWith(matrix.os, 'windows') && matrix.language == 'Fortran'
         run: |
           cmd.exe "/K" '".github/scripts/intelvars_windows.bat" && powershell'
-      - name: Set up MATLAB
-        uses: matlab-actions/setup-matlab@v1.1.0
 
 
       - name: Set up MATLAB
