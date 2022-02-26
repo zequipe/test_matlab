@@ -1,4 +1,5 @@
 function mex_time(language)
+% MEX_TIME measures the running time of MATLAB concerning MEX.
 
 orig_warning_state = warning;
 warning('off','all');
@@ -43,3 +44,5 @@ fprintf('\n- Time for 100 runs of timestwo: %f seconds\n\n', toc);
 delete('timestwo.*');
 
 warning(orig_warning_state);
+
+return
