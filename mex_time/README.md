@@ -4,38 +4,44 @@
 running time of MATLAB concerning `MEX`, in particular on GitHub Actions. See the action
 "[Test running time concerning MEX](https://github.com/equipez/test_matlab/actions/workflows/mex_time.yml)" for the results.
 
-Here is the data obtained by the [action on 23 February 2022](https://github.com/equipez/test_matlab/actions/runs/1885237017).
+Here is the data obtained by the [action on 26 February 2022](https://github.com/equipez/test_matlab/actions/runs/1902217520).
 ```
-System: GNU/Linux	Language: C	Time: 2022.02.26 05:13:57
+System: GNU/Linux | Language: C | MATLAB: 2021b | Time: 2022.02.26 05:46:36
 MEX configured to use 'gcc' for C language compilation.
-- Time for setting MEX up: 0.458058 seconds
-- Time for mexifying timestwo: 4.414136 seconds
-- Time for 100 runs of timestwo: 0.003987 seconds
+- Time for setting MEX up: 0.477950 seconds
+- Time for mexifying timestwo: 4.500026 seconds
+- Time for 100 runs of timestwo: 0.003845 seconds
 
-System: macOS	Language: C	Time: 2022.02.26 05:17:11
-MEX configured to use 'Xcode with Clang' for C language compilation.
-- Time for setting MEX up: 19.451248 seconds
-- Time for mexifying timestwo: 6.071816 seconds
-- Time for 100 runs of timestwo: 0.121092 seconds
-
-System: Windows	Language: C	Time: 2022.02.26 05:15:26
+System: Windows | Language: C | MATLAB: 2021b | Time: 2022.02.26 05:47:56
 MEX configured to use 'Microsoft Visual C++ 2019 (C)' for C language compilation.
-- Time for setting MEX up: 2.682795 seconds
-- Time for mexifying timestwo: 7.153244 seconds
-- Time for 100 runs of timestwo: 0.003125 seconds
+- Time for setting MEX up: 2.518557 seconds
+- Time for mexifying timestwo: 4.416958 seconds
+- Time for 100 runs of timestwo: 0.004215 seconds
+
+System: macOS | Language: C | MATLAB: 2021b | Time: 2022.02.26 05:49:01
+MEX configured to use 'Xcode with Clang' for C language compilation.
+- Time for setting MEX up: 17.602277 seconds
+- Time for mexifying timestwo: 5.979585 seconds
+- Time for 100 runs of timestwo: 0.130843 seconds
 
 
-System: GNU/Linux	Language: Fortran	Time: 2022.02.26 05:14:06
+System: GNU/Linux | Language: Fortran | MATLAB: 2021b | Time: 2022.02.26 05:46:20
 MEX configured to use 'gfortran' for FORTRAN language compilation.
-- Time for setting MEX up: 0.784235 seconds
-- Time for mexifying timestwo: 3.438739 seconds
-- Time for 100 runs of timestwo: 0.002906 seconds
+- Time for setting MEX up: 0.835881 seconds
+- Time for mexifying timestwo: 2.768746 seconds
+- Time for 100 runs of timestwo: 0.003279 seconds
 
-System: macOS	Language: Fortran	Time: 2022.02.26 05:17:17
+System: Windows | Language: Fortran | MATLAB: 2021b | Time: 2022.02.26 05:51:04
+MEX configured to use 'Intel oneAPI 2021 for Fortran with Microsoft Visual Studio 2019' for FORTRAN language compilation.
+- Time for setting MEX up: 1.660305 seconds
+- Time for mexifying timestwo: 3.495534 seconds
+- Time for 100 runs of timestwo: 0.003299 seconds
+
+System: macOS | Language: Fortran | MATLAB: 2021b | Time: 2022.02.26 05:49:47
 MEX configured to use 'Intel Fortran Composer XE' for FORTRAN language compilation.
-- Time for setting MEX up: 229.320783 seconds
-- Time for mexifying timestwo: 78.282772 seconds
-- Time for 100 runs of timestwo: 0.080919 seconds
+- Time for setting MEX up: 248.263933 seconds
+- Time for mexifying timestwo: 87.093711 seconds
+- Time for 100 runs of timestwo: 0.078741 seconds
 ```
 
 It turns out that MEX is much slower on macOS than on Linux: slow to set up, slow to mexify,
