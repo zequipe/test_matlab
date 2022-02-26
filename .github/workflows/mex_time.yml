@@ -13,6 +13,10 @@ on:
 env:
   MACOS_HPCKIT_URL: https://registrationcenter-download.intel.com/akdlm/irc_nas/18341/m_HPCKit_p_2022.1.0.86_offline.dmg
   MACOS_FORTRAN_COMPONENTS: intel.oneapi.mac.ifort-compiler
+  WINDOWS_BASEKIT_URL: https://registrationcenter-download.intel.com/akdlm/irc_nas/18497/w_BaseKit_p_2022.1.2.154_offline.exe
+  WINDOWS_HPCKIT_URL: https://registrationcenter-download.intel.com/akdlm/irc_nas/18529/w_HPCKit_p_2022.1.2.116_offline.exe
+  WINDOWS_FORTRAN_COMPONENTS: intel.oneapi.win.ifort-compiler
+
 
 jobs:
   test:

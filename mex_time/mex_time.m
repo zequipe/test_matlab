@@ -21,9 +21,10 @@ else
     error('Platform not supported.')
 end
 
+matlab_version = version('-release');
 date_time = datestr(now,'yyyy.mm.dd HH:MM:SS');
 
-fprintf('\nSystem: %s\tLanguage: %s\tDate: %s\n\n', sys, language, date_time);
+fprintf('\nSystem: %s | Language: %s | MATLAB: %s | Time: %s\n\n', sys, language, matlab_version, date_time);
 
 tic;
 mex('-setup', language);
