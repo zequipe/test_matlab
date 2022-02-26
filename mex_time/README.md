@@ -48,9 +48,13 @@ It turns out that MEX is much slower on macOS than on Linux: slow to set up, slo
 and the MEX function is slow to run. In particular, it is about 250 times slower to set up MEX for Fortran on macOS than on Linux.
 
 However, note that the significant difference probably comes from the setup of MATLAB on GitHub Actions for Linux and for macOS.
-It will likely disappear if we do the timing on local machines. See the discussions in the GitHub issue
-"[`MEX` is much slower on macOS than on Linux](https://github.com/matlab-actions/setup-matlab/issues/30)".
+It will likely disappear if we do the timing on local machines.
 
+## Discussions
+- GitHub issue of [`matlab-actions/setup-matlab`](https://github.com/matlab-actions/setup-matlab): [`MEX` is much slower on macOS than on Linux](https://github.com/matlab-actions/setup-matlab/issues/30).
+- MATLAB Answers: [Is MEX known to be slow on macOS?
+](https://www.mathworks.com/matlabcentral/answers/1658820-is-mex-known-to-be-slow-on-macos)
+-StackOverflow: [Is MEX known to be slow on macOS?](https://stackoverflow.com/questions/71274732/is-mex-of-matlab-known-to-be-slow-on-macos)
 
 ## Contact
 
