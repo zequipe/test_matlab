@@ -1,23 +1,44 @@
 function mex_time(language)
 
-if strcmpi(language, 'Fortran')
+orig_warning_state = warning;
+warning('off','all');
+
+if nargin == 1 && (isa(language, 'char') || isa(language, 'string')) && strcmpi(language, 'Fortran')
+    language = 'Fortran';
     timestwo_src = 'timestwo.F';
 else
+    language = 'C';
     timestwo_src = 'timestwo.c';
 end
 
+if ismac
+    sys = 'macOS';
+elseif isunix
+    sys = 'GNU/Linux';
+elseif ispc
+    sys = 'Windows';
+else
+    error('Platform not supported.')
+end
+
+date_time = datestr(now,'yyyy.mm.dd HH:MM:SS');
+
+fprintf('\nSystem: %s\tLanguage: %s\tDate: %s\n\n', sys, language, date_time);
+
 tic;
-mex('-setup', '-v', language);
-fprintf('\n======> Time for setting MEX up: %f seconds\n\n', toc);
+mex('-setup', language);
+fprintf('\n- Time for setting MEX up: %f seconds\n\n', toc);
 
 clear('timestwo');
 tic;
 mex(fullfile(matlabroot, 'extern', 'examples', 'refbook', timestwo_src));
-fprintf('======> Time for mexifying timestwo: %f seconds\n', toc);
+fprintf('\n- Time for mexifying timestwo: %f seconds\n', toc);
 
 tic;
 for i = 1 : 100
     timestwo(i);
 end
-fprintf('\n======> Time for 100 runs of timestwo: %f seconds\n', toc);
+fprintf('\n- Time for 100 runs of timestwo: %f seconds\n\n', toc);
 delete('timestwo.*');
+
+warning(orig_warning_state);
