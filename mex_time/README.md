@@ -54,7 +54,7 @@ It will likely disappear if we do the timing on local machines.
 - GitHub issue of [`matlab-actions/setup-matlab`](https://github.com/matlab-actions/setup-matlab): [`MEX` is much slower on macOS than on Linux](https://github.com/matlab-actions/setup-matlab/issues/30).
 - MATLAB Answers: [Is MEX known to be slow on macOS?
 ](https://www.mathworks.com/matlabcentral/answers/1658820-is-mex-known-to-be-slow-on-macos)
-- StackOverflow: [Is MATLAB MEX known to be slow on macOS?](https://stackoverflow.com/questions/71274732/is-mex-of-matlab-known-to-be-slow-on-macos)
+- StackOverflow: [Is MEX of MATLAB known to be slow on macOS?](https://stackoverflow.com/questions/71274732/is-mex-of-matlab-known-to-be-slow-on-macos)
 
 ## Contact
 

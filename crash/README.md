@@ -95,6 +95,9 @@ MATLAB will still crash, but this time during the copying
 [`no_clean_build_dir_after_copy.m`](https://github.com/zaikunzhang/test_matlab/blob/master/crash/fix/no_clean_build_dir_after_copy.m)).
 This is simply because they cannot resolve the conflict described above.
 
+## Discussions
+- MATLAB Answers: [Bug: MATLAB crashes when mexifying the official `timestwo.c`](https://www.mathworks.com/matlabcentral/answers/1651930-bug-matlab-crashes-when-mexifying-the-official-timestwo-c)
+
 ## Contact
 
 Feel free to contact me if have suggestions or questions.
