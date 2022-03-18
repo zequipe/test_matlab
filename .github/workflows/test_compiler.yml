@@ -1,4 +1,4 @@
-name: Test running time concerning MEX
+name: Test supported compilers of MATLAB MEX
 
 on:
   # Trigger the workflow on push or pull request
@@ -16,7 +16,6 @@ env:
   WINDOWS_BASEKIT_URL: https://registrationcenter-download.intel.com/akdlm/irc_nas/18497/w_BaseKit_p_2022.1.2.154_offline.exe
   WINDOWS_HPCKIT_URL: https://registrationcenter-download.intel.com/akdlm/irc_nas/18529/w_HPCKit_p_2022.1.2.116_offline.exe
   WINDOWS_FORTRAN_COMPONENTS: intel.oneapi.win.ifort-compiler
-  GFORTRAN_VERSION: 10
 
 
 jobs:
@@ -26,10 +25,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-          #os: [ubuntu-latest, macos-latest, windows-2019]
-        os: [ubuntu-latest]
+        #os: [ubuntu-latest, macos-latest, windows-2019]
         #language: [C, Fortran]
+        os: [ubuntu-latest]
         language: [Fortran]
+        gfortran_version: [7, 8, 9, 10, 11]
+        matlab_release: [R2021b, latest]
 
     steps:
       - name: Check out repository
@@ -80,11 +81,13 @@ jobs:
       - name: Link gfortran for MATLAB on Linux
         if: startsWith(matrix.os, 'ubuntu') && matrix.language == 'Fortran'
         run: |
-          sudo bash .github/scripts/link_gfortran_for_matlab ${{ env.GFORTRAN_VERSION }}
+          sudo bash .github/scripts/link_gfortran_for_matlab ${{ matrix.gfortran_version }}
           realpath "$(command -v gfortran)"
 
       - name: Set up MATLAB
         uses: matlab-actions/setup-matlab@v1.1.0
+        with:
+          release: ${{ matrix.matlab_release }}
 
       - name: Run script
         uses: matlab-actions/run-command@v1
