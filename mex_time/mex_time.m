@@ -1,15 +1,28 @@
-function mex_time(language)
+function mex_time(language, verbose)
 % MEX_TIME measures the running time of MATLAB concerning MEX.
 
 orig_warning_state = warning;
 warning('off','all');
 
-if nargin == 1 && (isa(language, 'char') || isa(language, 'string')) && strcmpi(language, 'Fortran')
+if nargin >= 1 && (isa(language, 'char') || isa(language, 'string')) && strcmpi(language, 'Fortran')
     language = 'Fortran';
     timestwo_src = 'timestwo.F';
 else
     language = 'C';
     timestwo_src = 'timestwo.c';
+end
+
+if nargin <= 1
+    verbose = false;
+end
+if nargin >= 2 && (isa(verbose, 'char') || isa(verbose, 'string')) && strcmpi(verbose, 'verbose')
+    verbose = true;
+end
+
+if verbose
+    mex_options = {'-v'};
+else
+    mex_options = {};
 end
 
 if ismac
@@ -28,12 +41,12 @@ date_time = datestr(now,'yyyy.mm.dd HH:MM:SS');
 fprintf('\nSystem: %s | Language: %s | MATLAB: %s | Time: %s\n\n', sys, language, matlab_version, date_time);
 
 tic;
-mex('-setup', language);
+mex(mex_options{:}, '-setup', language);
 fprintf('\n- Time for setting MEX up: %f seconds\n\n', toc);
 
 clear('timestwo');
 tic;
-mex(fullfile(matlabroot, 'extern', 'examples', 'refbook', timestwo_src));
+mex(mex_options{:}, fullfile(matlabroot, 'extern', 'examples', 'refbook', timestwo_src));
 fprintf('\n- Time for mexifying timestwo: %f seconds\n', toc);
 
 tic;
