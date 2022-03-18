@@ -85,7 +85,7 @@ jobs:
       - name: Set up MATLAB
         uses: matlab-actions/setup-matlab@v1.1.0
         with:
-          release: 2021b
+          release: R2021b
 
       - name: Run script
         uses: matlab-actions/run-command@v1
