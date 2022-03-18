@@ -1,15 +1,18 @@
 #!/usr/bin/bash
 
 SUPPORTED_GFORTRAN_VERSION="9"
-
 GFORTRAN_PATH="/usr/bin/gfortran"
+
 SUPPORTED_GFORTRAN="gfortran-""$SUPPORTED_GFORTRAN_VERSION"
-SUPPORTED_GFORTRAN_PATH="$(dirname "$GFORTRAN_PATH")"/"$SUPPORTED_GFORTRAN"
 
 apt install "$SUPPORTED_GFORTRAN"
+
+SUPPORTED_GFORTRAN_PATH="$(realpath "$(command -v "$SUPPORTED_GFORTRAN")")"
 
 if [[ -f "$GFORTRAN_PATH" ]] ; then
     mv "$GFORTRAN_PATH" "$GFORTRAN_PATH".bak
 fi
 
 ln -s "$SUPPORTED_GFORTRAN_PATH" "$GFORTRAN_PATH"
+
+realpath "$(command -v gfortran)"
