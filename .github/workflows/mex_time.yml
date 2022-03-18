@@ -74,6 +74,10 @@ jobs:
           cmd.exe "/K" '".github/scripts/intelvars_windows.bat" && powershell'
 
 
+      - name: Link gfortran for MATLAB on Linux
+        if: startsWith(matrix.os, 'ubuntu') && matrix.language == 'Fortran'
+        run: sudo bash .github/scripts/link_gfortran_for_matlab
+
       - name: Set up MATLAB
         uses: matlab-actions/setup-matlab@v1.1.0
 
