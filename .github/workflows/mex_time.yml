@@ -79,7 +79,7 @@ jobs:
       - name: Link gfortran for MATLAB on Linux
         if: startsWith(matrix.os, 'ubuntu') && matrix.language == 'Fortran'
         run: |
-          sudo bash .github/scripts/link_gfortran_for_matlab
+          sudo bash .github/scripts/link_gfortran_for_matlab 10
           realpath "$(command -v gfortran)"
 
       - name: Set up MATLAB
