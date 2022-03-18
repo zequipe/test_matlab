@@ -93,4 +93,4 @@ jobs:
           command: |
               system('realpath "$(command -v gfortran)"');
               cd('mex_time');
-              mex_time('${{ matrix.language }}', 'verbose');
+              mex_time('${{ matrix.language }}');
