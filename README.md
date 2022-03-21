@@ -16,6 +16,8 @@ in particular on [GitHub Actions](https://github.com/equipez/test_matlab/actions
 - GitHub issue of [`matlab-actions/setup-matlab`](https://github.com/matlab-actions/setup-matlab):
 [MATLAB R2022a: MEX does not support the Fortran compilers specified in the official documentation](https://github.com/matlab-actions/setup-matlab/issues/33)
 
+- StackOverflow: [Does MATLAB R2022a support gfortran 8.x on Linux (as specified by the documentation)?](https://stackoverflow.com/questions/71552747/does-matlab-r2022a-support-gfortran-8-x-on-linux-as-specified-by-the-documentat)
+
 - MATLAB Answer: [MATLAB R2022a: MEX does not support the Fortran compilers on Linux as specified in the official documentation](https://www.mathworks.com/matlabcentral/answers/1674509-matlab-r2022a-mex-does-not-support-the-fortran-compilers-on-linux-as-specified-in-the-official-docu)
 
 - GitHub issue of [`matlab-actions/setup-matlab`](https://github.com/matlab-actions/setup-matlab):
