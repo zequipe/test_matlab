@@ -35,8 +35,10 @@ jobs:
         with:
           command: |
             cd('get_files');
-            get_mexopts;
-            get_fintrf;
+            destdir = fullfile(cd(), '${{ matrix.os }}.${{ matrix.matlab_release }}');
+            mkdir(destdir);
+            get_mexopts(destdir);
+            get_fintrf(destdir);
 
       - name: Store artifacts
         uses: actions/upload-artifact@v2
