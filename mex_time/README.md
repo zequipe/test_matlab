@@ -92,7 +92,7 @@ MEX configured to use 'Intel Fortran Composer XE' for FORTRAN language compilati
 ```
 
 It turns out that MEX is much slower on macOS than on Linux: slow to set up, slow to mexify,
-and the MEX function is slow to run. In particular, it is about 250 times slower to set up MEX for Fortran on macOS than on Linux.
+and the MEX function is slow to run. In particular, on 24 February 2022, it is about 250 times slower to set up MEX for Fortran on macOS than on Linux; on 22 May, the speed on macOS has improved a lot, but there is still a significant difference compared with Linux and Windows.  
 
 However, note that the significant difference probably comes from the setup of MATLAB on GitHub Actions for Linux and for macOS.
 It will likely disappear if we do the timing on local machines.
