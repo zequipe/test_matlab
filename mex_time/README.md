@@ -13,6 +13,12 @@ running time of MATLAB concerning `MEX`, in particular on GitHub Actions. See th
 
 Here is the data obtained by the [action on 22 May 2022](https://github.com/equipez/test_matlab/actions/runs/2367591066).
 ```
+  System: GNU/Linux | Language: C | MATLAB: 2022a | Time: 2022.05.22 20:08:37
+  MEX configured to use 'gcc' for C language compilation.
+  - Time for setting MEX up: 1.113228 seconds
+  - Time for mexifying timestwo: 4.024866 seconds
+  - Time for 100 runs of timestwo: 0.003611 seconds
+  
  System: Windows | Language: C | MATLAB: 2022a | Time: 2022.05.22 20:09:15
  MEX configured to use 'Microsoft Visual C++ 2019 (C)' for C language compilation.
  - Time for setting MEX up: 3.540568 seconds
