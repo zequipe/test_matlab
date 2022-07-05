@@ -4,6 +4,46 @@
 running time of MATLAB concerning `MEX`, in particular on GitHub Actions. See the action
 "[Test running time concerning MEX](https://github.com/equipez/test_matlab/actions/workflows/mex_time.yml)" for the results.
 
+ System: GNU/Linux | Language: C | MATLAB: 2022a | Time: 2022.05.22 20:08:37
+ MEX configured to use 'gcc' for C language compilation.
+ - Time for setting MEX up: 1.113228 seconds
+ - Time for mexifying timestwo: 4.024866 seconds
+ - Time for 100 runs of timestwo: 0.003611 seconds
+
+
+Here is the data obtained by the [action on 22 May 2022](https://github.com/equipez/test_matlab/actions/runs/2367591066).
+```
+ System: Windows | Language: C | MATLAB: 2022a | Time: 2022.05.22 20:09:15
+ MEX configured to use 'Microsoft Visual C++ 2019 (C)' for C language compilation.
+ - Time for setting MEX up: 3.540568 seconds
+ - Time for mexifying timestwo: 6.759312 seconds
+ - Time for 100 runs of timestwo: 0.003764 seconds
+
+ System: macOS | Language: C | MATLAB: 2022a | Time: 2022.05.22 20:11:17
+ MEX configured to use 'Xcode with Clang' for C language compilation.
+ - Time for setting MEX up: 15.098118 seconds
+ - Time for mexifying timestwo: 5.906411 seconds
+ - Time for 100 runs of timestwo: 0.124156 seconds
+ 
+ System: GNU/Linux | Language: Fortran | MATLAB: 2022a | Time: 2022.05.22 20:07:28
+ MEX configured to use 'gfortran' for FORTRAN language compilation.
+ - Time for setting MEX up: 1.069321 seconds
+ - Time for mexifying timestwo: 4.011903 seconds
+ - Time for 100 runs of timestwo: 0.005300 seconds
+
+  System: Windows | Language: Fortran | MATLAB: 2022a | Time: 2022.05.22 20:09:34
+  MEX configured to use 'Intel oneAPI 2021 for Fortran with Microsoft Visual Studio 2019' for FORTRAN language compilation.
+  - Time for setting MEX up: 2.157514 seconds
+  - Time for mexifying timestwo: 4.381218 seconds
+  - Time for 100 runs of timestwo: 0.004707 seconds
+  
+  System: macOS | Language: Fortran | MATLAB: 2022a | Time: 2022.05.22 20:09:55
+  MEX configured to use 'Intel Fortran Composer XE' for FORTRAN language compilation.
+  - Time for setting MEX up: 23.721586 seconds
+  - Time for mexifying timestwo: 13.366262 seconds
+  - Time for 100 runs of timestwo: 0.118269 seconds
+  
+
 Here is the data obtained by the [action on 26 February 2022](https://github.com/equipez/test_matlab/actions/runs/1902217520).
 ```
 System: GNU/Linux | Language: C | MATLAB: 2021b | Time: 2022.02.26 05:46:36
