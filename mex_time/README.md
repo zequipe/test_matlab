@@ -42,6 +42,7 @@ Here is the data obtained by the [action on 22 May 2022](https://github.com/equi
   - Time for setting MEX up: 23.721586 seconds
   - Time for mexifying timestwo: 13.366262 seconds
   - Time for 100 runs of timestwo: 0.118269 seconds
+  ```
   
 
 Here is the data obtained by the [action on 26 February 2022](https://github.com/equipez/test_matlab/actions/runs/1902217520).
