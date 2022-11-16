@@ -6,6 +6,8 @@ This repository contains a set of tools for testing the behavior of MATLAB.
 the **Linux** version of MATLAB concerning [`MEX`](https://www.mathworks.com/help/matlab/ref/mex.html).
 [[README](https://github.com/equipez/test_matlab/blob/master/crash/README.md)]
 
+- [`test_compiler`](https://github.com/zequipe/test_matlab/blob/master/.github/workflows/test_compiler.yml) tests which versions of `gfortran` are supported by MATLAB to mexify Fortran code; the result differs from the (initial) [official documentation of MathWorks](https://www.mathworks.com/support/requirements/supported-compilers.html); particularly, [MATLAB R2022a does not support `gfortran 8.x` as claimed](https://www.mathworks.com/matlabcentral/answers/1674509-bug-in-matlab-r2022a-mex-does-not-support-gfortran-8-x-as-specified-in-the-official-documentation)
+
 - [`mex_time`](https://github.com/equipez/test_matlab/blob/master/mex_time) tests the
 running time of MATLAB concerning `MEX`,
 in particular on [GitHub Actions](https://github.com/equipez/test_matlab/actions/workflows/mex_time.yml).
