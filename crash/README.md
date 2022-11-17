@@ -33,7 +33,7 @@ To run `crash.m`, your MATLAB has to have `MEX` configured for compiling `C`.
 Normally you only need to install `gcc` and then run `mex('-setup', 'C')` in MATLAB.
 
 According to limited tests, the bug does not affect the macOS version of MATLAB. On Windows,
-Windows will raise an error that
+MATLAB will raise an error that
 ```
 Error using crash>copy_src (line 165)
   The process cannot access the file because it is being used by another process.
