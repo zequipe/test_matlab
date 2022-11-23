@@ -4,7 +4,7 @@
 running time of MATLAB concerning `MEX`, in particular on GitHub Actions. See the action
 "[Test running time concerning MEX](https://github.com/equipez/test_matlab/actions/workflows/mex_time.yml)" for the results.
 
-Here is the data obtained by the [action on 22 May 2022](https://github.com/equipez/test_matlab/actions/runs/2367591066).
+Here is the data obtained by the [action on 20  2022](https://github.com/zequipe/test_matlab/actions/runs/3509542980).
 ```
 System: GNU/Linux | Language: C | MATLAB: 2022b | Time: 2022.11.20 20:04:45
 MEX configured to use 'gcc' for C language compilation.
