@@ -29,7 +29,7 @@ jobs:
         #language: [C, Fortran]
         os: [ubuntu-latest]
         language: [Fortran]
-        gfortran_version: [10, 11, 12]
+        gfortran_version: [10, 11, 12, 13]
         matlab_release: [R2022a, R2022b, latest]
 
     steps:
