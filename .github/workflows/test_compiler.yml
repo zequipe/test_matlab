@@ -29,8 +29,8 @@ jobs:
         #language: [C, Fortran]
         os: [ubuntu-latest]
         language: [Fortran]
-        gfortran_version: [7, 8, 9, 10, 11]
-        matlab_release: [R2021b, latest]
+        gfortran_version: [10, 11, 12]
+        matlab_release: [R2022a, R2022b, latest]
 
     steps:
       - name: Check out repository
