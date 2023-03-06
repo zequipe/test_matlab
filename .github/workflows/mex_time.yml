@@ -43,7 +43,7 @@ jobs:
       - name: cache install Intel oneAPI on macOS
         if: matrix.os == 'macos-latest' && matrix.language == 'Fortran'
         id: cache-install-macos
-        uses: actions/cache@v2
+        uses: actions/cache@v3.2.6
         with:
           path: /opt/intel/oneapi
           key: install-${{ env.MACOS_HPCKIT_URL }}-${{ env.MACOS_FORTRAN_COMPONENTS }}
@@ -58,7 +58,7 @@ jobs:
       - name: cache install Intel oneAPI on Windows
         if: startsWith(matrix.os, 'windows') && matrix.language == 'Fortran'
         id: cache-install-windows
-        uses: actions/cache@v2
+        uses: actions/cache@v3.2.6
         with:
           path: C:\Program Files (x86)\Intel\oneAPI\compiler
           key: install-${{ env.WINDOWS_HPCKIT_URL }}-${{ env.WINDOWS_FORTRAN_COMPONENTS }}-compiler-${{ hashFiles('**/.github/scripts/cache_exclude_oneapi_windows.sh') }}
