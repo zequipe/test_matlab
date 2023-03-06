@@ -34,7 +34,7 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.3.0
 
 
       - name: prepare for cache restore for Intel oneAPI on macOS
@@ -85,12 +85,12 @@ jobs:
           realpath "$(command -v gfortran)"
 
       - name: Set up MATLAB
-        uses: matlab-actions/setup-matlab@v1.1.0
+        uses: matlab-actions/setup-matlab@v1.2.4
         with:
           release: ${{ matrix.matlab_release }}
 
       - name: Run script
-        uses: matlab-actions/run-command@v1
+        uses: matlab-actions/run-command@v1.1.3
         with:
           command: |
               system('realpath "$(command -v gfortran)"');
