@@ -34,7 +34,7 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v3.6.0
+        uses: actions/checkout@v4.0.0
 
 
       - name: prepare for cache restore for Intel oneAPI on macOS
