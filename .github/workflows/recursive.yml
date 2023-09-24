@@ -18,7 +18,7 @@ on:
         required: false
 
 # Show the git ref in the workflow name if it is invoked manually.
-run-name: ${{ github.event_name == 'workflow_dispatch' && format('Manual run {0} , recursion depth {3}', inputs.git-ref, inputs.depth) || '' }}
+run-name: ${{ github.event_name == 'workflow_dispatch' && format('Manual run {0} , recursion depth {1}', inputs.git-ref, inputs.depth) || '' }}
 
 jobs:
   test:
