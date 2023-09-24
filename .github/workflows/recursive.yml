@@ -90,8 +90,9 @@ jobs:
           submodules: recursive
       - name: Clone setup_mex
         uses: actions/checkout@v4
-        repository: equipez/setup_mex
-        path: setup_mex
+        with:
+          repository: equipez/setup_mex
+          path: setup_mex
 
       - name: Link gfortran for MATLAB on Linux
         if: startsWith(matrix.os, 'ubuntu')
