@@ -1,4 +1,4 @@
-name: Recursive test, MATLAB
+name: Recursive calling of MEX functions
 
 on:
   # Trigger the workflow on push or pull request
@@ -18,7 +18,7 @@ on:
         required: false
 
 # Show the git ref in the workflow name if it is invoked manually.
-run-name: ${{ github.event_name == 'workflow_dispatch' && format('Manual run {0} , seed {1}, dimension {2}, recursion depth {3}', inputs.git-ref, inputs.random-seed, inputs.dimension, inputs.depth) || '' }}
+run-name: ${{ github.event_name == 'workflow_dispatch' && format('Manual run {0} , recursion depth {3}', inputs.git-ref, inputs.depth) || '' }}
 
 jobs:
   test:
