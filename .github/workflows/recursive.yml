@@ -134,7 +134,7 @@ jobs:
 
             cd setup_mex;
             try_mex_setup('fortran');
-            cd(old_dir);
+            cd(fullfile(old_dir, 'recursive'));
 
             if ~isempty('${{ inputs.depth }}')
                 depth = str2num('${{ inputs.depth }}');
