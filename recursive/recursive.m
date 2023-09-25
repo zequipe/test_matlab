@@ -1,6 +1,6 @@
 function recursive(depth)
 
-mex evaluate.F
+mex -O evaluate.F
 
 f = @(x) x;
 
