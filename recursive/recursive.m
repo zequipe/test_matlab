@@ -2,6 +2,8 @@ function recursive(depth)
 
 mex -O evaluate.F
 
+!ulimit -a
+
 f = @(x) x;
 
 for i = 1 : depth
