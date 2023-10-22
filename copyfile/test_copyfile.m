@@ -1,6 +1,6 @@
 function test_copyfile()
 
-system('rm folder* -rf; mkdir folder1; cd folder1; touch a; touch b; touch c; ln -s b blink; rm b; cd ..');
+system('rm -rf folder*; mkdir folder1; cd folder1; touch a; touch b; touch c; ln -s b blink; rm b; cd ..');
 
 success = copyfile('folder1','folder2');
 assert(success);
