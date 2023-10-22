@@ -8,7 +8,7 @@ assert(success);
 fprintf('\nfolder1:\n');
 dir('folder1')
 
-fprintf('\nfolder1:\n');
+fprintf('\nfolder2:\n');
 dir('folder2')
 
 assert(isequal({dir('folder1').name}, {dir('folder2').name}));
