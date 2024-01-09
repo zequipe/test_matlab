@@ -3,10 +3,13 @@
 This repository contains a set of tools for testing the behavior of MATLAB.
 
 - [`crash`](https://github.com/equipez/test_matlab/blob/master/crash) illustrates a bug of
-the **Linux** version of MATLAB concerning [`MEX`](https://www.mathworks.com/help/matlab/ref/mex.html).
+the **Linux** version of MATLAB (up to R2023b) concerning [`MEX`](https://www.mathworks.com/help/matlab/ref/mex.html).
 [[README](https://github.com/equipez/test_matlab/blob/master/crash/README.md)]
 
 - [`test_compiler`](https://github.com/zequipe/test_matlab/blob/master/.github/workflows/test_compiler.yml) tests which versions of `gfortran` are supported by MATLAB to mexify Fortran code; the result differs from the (initial) [official documentation of MathWorks](https://www.mathworks.com/support/requirements/supported-compilers.html); particularly, [MATLAB R2022a does not support `gfortran 8.x` as claimed](https://www.mathworks.com/matlabcentral/answers/1674509-bug-in-matlab-r2022a-mex-does-not-support-gfortran-8-x-as-specified-in-the-official-documentation).
+
+- [`test_copyfile`](https://github.com/zequipe/test_matlab/blob/master/copyfile/test_copyfile.m)
+  illustrates a bug of MATLAB (up to R2023b) concerning `copyfile` on Linux and macOS.
 
 - [`mex_time`](https://github.com/equipez/test_matlab/blob/master/mex_time) tests the
 running time of MATLAB concerning `MEX`,
@@ -14,6 +17,10 @@ in particular on [GitHub Actions](https://github.com/equipez/test_matlab/actions
 [[README](https://github.com/equipez/test_matlab/blob/master/mex_time/README.md)]
 
 ## Discussions
+
+- StackOverflow: [Strange behavior of `copyfile` regarding symlinks on Linux and macOS](https://stackoverflow.com/questions/77340268/strange-behavior-of-copyfile-regarding-symlinks-on-linux-and-macos)
+
+- MATLAB Answer: [Strange behavior of `copyfile` regarding symlinks on Linux and macOS](https://www.mathworks.com/matlabcentral/answers/2036891-strange-behavior-of-copyfile-regarding-symlinks-on-linux-and-macos?s_tid=srchtitle)
 
 - GitHub issue of [`matlab-actions/setup-matlab`](https://github.com/matlab-actions/setup-matlab):
 [MATLAB R2022a: MEX does not support the Fortran compilers specified in the official documentation](https://github.com/matlab-actions/setup-matlab/issues/33)
