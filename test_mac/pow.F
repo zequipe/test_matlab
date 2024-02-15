@@ -2,12 +2,12 @@
 C======================================================================
 #if 0
 C
-C     square.F
+C     pow.F
 C     .F file needs to be preprocessed to generate .for equivalent
 C
 #endif
 C
-C     square.f
+C     pow.f
 C
 C     Computational function that takes a scalar and doubles it.
 
@@ -50,17 +50,17 @@ C     Arguments for computational routine:
 C-----------------------------------------------------------------------
 C     Check for proper number of arguments.
       if(nrhs .ne. 1) then
-         call mexErrMsgIdAndTxt ('MATLAB:square:nInput',
+         call mexErrMsgIdAndTxt ('MATLAB:pow:nInput',
      +                           'One input required.')
       elseif(nlhs .gt. 1) then
-         call mexErrMsgIdAndTxt ('MATLAB:square:nOutput',
+         call mexErrMsgIdAndTxt ('MATLAB:pow:nOutput',
      +                           'Too many output arguments.')
       endif
 
 C     Validate inputs
 C     Check that the input is a number.
       if(mxIsNumeric(prhs(1)) .eq. 0) then
-         call mexErrMsgIdAndTxt ('MATLAB:square:NonNumeric',
+         call mexErrMsgIdAndTxt ('MATLAB:pow:NonNumeric',
      +                           'Input must be a number.')
       endif
 
@@ -71,7 +71,7 @@ C     Get the size of the input array.
 C     Validate inputs
 C     Check that the input is a scalar number.
       if(.not.((mrows .eq. 1) .and. (ncols .eq. 1))) then
-         call mexErrMsgIdAndTxt ('MATLAB:square:NonScalar',
+         call mexErrMsgIdAndTxt ('MATLAB:pow:NonScalar',
      +                           'Input must be a scalar number.')
       endif
 
@@ -95,7 +95,7 @@ C     Create matrix for the return argument.
 #endif
 
 C     Call the computational subroutine.
-      call square(y_output, x_input)
+      call pow(y_output, x_input)
 
 C     Load the data into y_ptr, which is the output to MATLAB.
       call mxCopyReal8ToPtr(y_output,y_ptr,size)
@@ -106,9 +106,9 @@ C     Load the data into y_ptr, which is the output to MATLAB.
 C-----------------------------------------------------------------------
 C     Computational routine
 
-      subroutine square(y_output, x_input)
+      subroutine pow(y_output, x_input)
       real*8 x_input, y_output
 
-      y_output = x_input**2
+      y_output = x_input**x_input
       return
       end
