@@ -1,0 +1,46 @@
+name: Test MATLAB MEX on macOS with Xcode 14.2 and Xcode 15.1
+
+on:
+  # Trigger the workflow on push or pull request
+  #push:
+  #pull_request:  # DANGEROUS! MUST be disabled for self-hosted runners!
+  # Trigger the workflow by cron. The default time zone of GitHub Actions is UTC.
+  schedule:
+      - cron: '0 2 * * 0'
+  # Trigger the workflow when it is manually triggered
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test running time concerning MEX
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        # See the following for the configurations of macos-12 and macos-13 runners, especially the
+        # versions of Xcode
+        # https://github.com/actions/runner-images/blob/macos-13/20240114.1/images/macos/macos-12-Readme.md
+        # https://github.com/actions/runner-images/blob/macos-13/20240114.1/images/macos/macos-13-Readme.md
+        os: [macos-12, macos-13]
+        matlab: [R2023a, R2023b]
+        oneapi: [2021, 2022, 2023]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4.1.1
+
+      - name: Install Intel oneAPI
+        run: bash .github/scripts/install_oneapi_macos.sh ${{ matrix.oneapi }}
+
+      - name: Set up MATLAB
+        uses: matlab-actions/setup-matlab@v2.0.0
+        with:
+          release: ${{ matrix.matlab }}
+          cache: true
+
+      - name: Run the test
+        uses: matlab-actions/run-command@v2.0.0
+        with:
+          command: |
+            cd('test_mac');
+            test_square(10);
