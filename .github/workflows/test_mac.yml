@@ -12,7 +12,7 @@ on:
 
 jobs:
   test:
-    name: Test running time concerning MEX
+    name: Test MATLAB MEX on macOS
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -21,9 +21,9 @@ jobs:
         # versions of Xcode
         # https://github.com/actions/runner-images/blob/macos-13/20240114.1/images/macos/macos-12-Readme.md
         # https://github.com/actions/runner-images/blob/macos-13/20240114.1/images/macos/macos-13-Readme.md
-        os: [macos-13] #, macos-12]
-        matlab: [R2023b] #, R2023a]
-        oneapi: [2023] #, 2022, 2021]
+        os: [macos-13, macos-12]
+        matlab: [R2023b, R2023a]
+        oneapi: [2023, 2022, 2021]
 
     steps:
       - name: Check out repository
@@ -44,5 +44,6 @@ jobs:
         uses: matlab-actions/run-command@v2.0.0
         with:
           command: |
+            ver
             cd('test_mac');
             test_pow(3)
