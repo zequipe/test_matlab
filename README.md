@@ -16,6 +16,8 @@ running time of MATLAB concerning `MEX`,
 in particular on [GitHub Actions](https://github.com/equipez/test_matlab/actions/workflows/mex_time.yml).
 [[README](https://github.com/equipez/test_matlab/blob/master/mex_time/README.md)]
 
+- [`test_mac`](https://github.com/zequipe/test_matlab/tree/master/test_mac) shows that the MEX of MATLAB R2023b (update 6 as of February 15, 2024) does not work with Xcode 15 and Intel oneAPI 2023. This differs from the [official documentation](https://www.mathworks.com/support/requirements/supported-compilers-mac.html).
+
 ## Discussions
 
 - StackOverflow: [Strange behavior of `copyfile` regarding symlinks on Linux and macOS](https://stackoverflow.com/questions/77340268/strange-behavior-of-copyfile-regarding-symlinks-on-linux-and-macos)
