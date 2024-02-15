@@ -109,6 +109,6 @@ C     Computational routine
       subroutine pow(y_output, x_input)
       real*8 x_input, y_output
 
-      y_output = x_input**x_input
+      y_output = x_input**int(x_input)
       return
       end
