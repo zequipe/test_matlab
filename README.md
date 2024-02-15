@@ -20,6 +20,13 @@ in particular on [GitHub Actions](https://github.com/equipez/test_matlab/actions
 
 ## Discussions
 
+- StackOverflow: [Does MEX of MATLAB R2023b (update 6) on macOS-13 work with Xcode 15.0 and Intel oneAPI 2023?](https://stackoverflow.com/questions/77998520/does-mex-of-matlab-r2023b-update-6-work-with-xcode-15-0-and-intel-oneapi-2023)
+
+- MATLAB Answer: [Does MEX of MATLAB R2023b (update 6) on macOS-13 work with Xcode 15.0 and Intel oneAPI 2023?](https://www.mathworks.com/matlabcentral/answers/2082233-does-mex-of-matlab-r2023b-update-6-on-macos-13-work-with-xcode-15-0-and-intel-oneapi-2023)
+
+- GitHub issue of [`matlab-actions/setup-matlab`](https://github.com/matlab-actions/setup-matlab):
+[MEX of MATLAB R2023b provided by setup-matlab@v2 does not work with Xcode 15.0 and Intel oneAPI 2023](https://github.com/matlab-actions/setup-matlab/issues/96)
+
 - StackOverflow: [Strange behavior of `copyfile` regarding symlinks on Linux and macOS](https://stackoverflow.com/questions/77340268/strange-behavior-of-copyfile-regarding-symlinks-on-linux-and-macos)
 
 - MATLAB Answer: [Strange behavior of `copyfile` regarding symlinks on Linux and macOS](https://www.mathworks.com/matlabcentral/answers/2036891-strange-behavior-of-copyfile-regarding-symlinks-on-linux-and-macos?s_tid=srchtitle)
