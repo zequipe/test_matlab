@@ -21,9 +21,9 @@ jobs:
         # versions of Xcode
         # https://github.com/actions/runner-images/blob/macos-13/20240114.1/images/macos/macos-12-Readme.md
         # https://github.com/actions/runner-images/blob/macos-13/20240114.1/images/macos/macos-13-Readme.md
-        os: [macos-13]#, macos-12]
-        matlab: [R2023b]#, R2023a]
-        oneapi: [2023]#, 2022, 2021]
+        os: [macos-13, macos-12]
+        matlab: [R2023b, R2023a]
+        oneapi: [2023, 2022, 2021]
 
     steps:
       - name: Check out repository
