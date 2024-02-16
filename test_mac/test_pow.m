@@ -1,9 +1,6 @@
 function y = test_pow(x)
 
 mex('-setup', 'Fortran');
-getenv('LDFLAGSVER')
-setenv('LDFLAGSVER', '-Wl,-undefined,dynamic_lookup');
-getenv('LDFLAGSVER')
-mex('-v', 'pow.F');
+mex('-v', 'LDFLAGSVER=$(echo $LDFLAGSVER | sed "s|error|dynamic_lookup|")', 'pow.F');
 y = pow(x);
 %assert(y == x^int64(x), 'pow failed')
