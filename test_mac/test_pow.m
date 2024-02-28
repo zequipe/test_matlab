@@ -12,6 +12,7 @@ y = pow(x)
 assert(y == x^int64(x), 'pow failed');
 
 % The following fails due to undefined symbols. 
-mex('-v', 'pow.F');
+%mex('-v', 'pow.F');
+mex('-v', '-limf', 'pow.F');
 y = pow(x)
 assert(y == x^int64(x), 'pow failed');
