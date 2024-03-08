@@ -31,7 +31,7 @@ jobs:
           release: ${{ matrix.matlab_release }}
 
       - name: Run script
-        uses: matlab-actions/run-command@v2.0.0
+        uses: matlab-actions/run-command@v2.1.0
         with:
           command: |
             cd('get_files');

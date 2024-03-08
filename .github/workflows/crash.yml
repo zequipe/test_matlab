@@ -47,7 +47,7 @@ jobs:
           release: ${{ env.MATLAB_RELEASE }}
 
       - name: Run script
-        uses: matlab-actions/run-command@v2.0.0
+        uses: matlab-actions/run-command@v2.1.0
         with:
           command: |
               cd('crash');
