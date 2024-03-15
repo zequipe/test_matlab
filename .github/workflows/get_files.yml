@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v4.1.2
 
       - name: Set up MATLAB
         if: ${{ steps.check_matlab.outputs.has_matlab != 'true' }}
