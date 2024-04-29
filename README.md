@@ -1,6 +1,6 @@
 ## Introduction
 
-This repository contains a set of tools for testing the behavior of MATLAB.
+This repository contains a set of scripts that test the behavior of MATLAB, sometimes illustrate its bugs.
 
 - [`crash`](https://github.com/equipez/test_matlab/blob/master/crash) illustrates a bug of
 the **Linux** version of MATLAB (up to R2023b) concerning [`MEX`](https://www.mathworks.com/help/matlab/ref/mex.html).
@@ -11,12 +11,12 @@ the **Linux** version of MATLAB (up to R2023b) concerning [`MEX`](https://www.ma
 - [`test_copyfile`](https://github.com/zequipe/test_matlab/blob/master/copyfile/test_copyfile.m)
   illustrates a bug of MATLAB (up to R2023b) concerning `copyfile` on Linux and macOS.
 
+- [`test_mac`](https://github.com/zequipe/test_matlab/tree/master/test_mac) shows that the MEX of MATLAB R2023b (update 6 as of February 15, 2024) does not work with Xcode 15 and Intel oneAPI 2023. This differs from the [official documentation](https://www.mathworks.com/support/requirements/supported-compilers-mac.html).
+
 - [`mex_time`](https://github.com/equipez/test_matlab/blob/master/mex_time) tests the
 running time of MATLAB concerning `MEX`,
 in particular on [GitHub Actions](https://github.com/equipez/test_matlab/actions/workflows/mex_time.yml).
 [[README](https://github.com/equipez/test_matlab/blob/master/mex_time/README.md)]
-
-- [`test_mac`](https://github.com/zequipe/test_matlab/tree/master/test_mac) shows that the MEX of MATLAB R2023b (update 6 as of February 15, 2024) does not work with Xcode 15 and Intel oneAPI 2023. This differs from the [official documentation](https://www.mathworks.com/support/requirements/supported-compilers-mac.html).
 
 ## Discussions
 
