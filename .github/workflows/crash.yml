@@ -42,7 +42,7 @@ jobs:
           realpath "$(command -v gfortran)"
 
       - name: Set up MATLAB
-        uses: matlab-actions/setup-matlab@v2.1.2
+        uses: matlab-actions/setup-matlab@v2.2.0
         with:
           release: ${{ env.MATLAB_RELEASE }}
 
