@@ -1,0 +1,49 @@
+name: Demonstrate an issue with the MEX of MATLAB R2025a
+
+on:
+  # Trigger the workflow by cron. The default time zone of GitHub Actions is UTC.
+  schedule:
+    - cron: '0 18 1 * *'
+  # Trigger the workflow when it is manually triggered
+  workflow_dispatch:
+
+env:
+  MATLAB_RELEASE: latest
+
+jobs:
+  test:
+    name: Demonstrate an issue with the MEX of MATLAB R2025a
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest] #, windows-latest]
+        matlab_release: [R2024b, R2025a]
+        gfortran_version: [11, 12, 13]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4.1.2
+        with:
+          submodules: recursive
+
+      - name: Miscellaneous setup
+        run: bash .github/scripts/misc_setup
+
+      - uses: fortran-lang/setup-fortran@v1.6.3
+        if: startsWith(matrix.os, 'ubuntu')
+        with:
+          compiler: gcc
+          version: ${{ matrix.gfortran_version }}
+
+      - name: Set up MATLAB
+        uses: matlab-actions/setup-matlab@v2.1.2
+        with:
+          release: ${{ matrix.matlab_release }}
+
+      - name: Run script
+        uses: matlab-actions/run-command@v2.1.1
+        with:
+          command: |
+              cd('segfault_2025a');
+              test;
