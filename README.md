@@ -3,7 +3,7 @@
 This repository contains a set of scripts that test the behavior of MATLAB, sometimes illustrate its bugs.
 
 - [`segfault_2025a`](https://github.com/zequipe/test_matlab/tree/master/segfault_2025a) illustrates
-  a bug in MATLAB R2025a MEX when handling internal subroutines in Fortran.
+  a bug in MATLAB R2025a MEX when handling internal subroutines in Fortran. [`README`](https://github.com/zequipe/test_matlab/blob/master/segfault_2025a/README.md)
 
 - [`crash`](https://github.com/equipez/test_matlab/blob/master/crash) illustrates a bug of
 the **Linux** version of MATLAB (up to R2023b) concerning [`MEX`](https://www.mathworks.com/help/matlab/ref/mex.html).
