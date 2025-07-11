@@ -53,6 +53,8 @@ in particular on [GitHub Actions](https://github.com/equipez/test_matlab/actions
 
 - MATLAB Answers: [Bug: MATLAB crashes when mexifying the official `timestwo.c`](https://www.mathworks.com/matlabcentral/answers/1651930-bug-matlab-crashes-when-mexifying-the-official-timestwo-c)
 
+- MATLAB Answers: [Bug: MATLAB 2025a segfaults on Ubuntu when handling Fortran MEX files with internal subroutines](https://www.mathworks.com/matlabcentral/answers/2178414-bug-matlab-2025a-segfaults-on-ubuntu-when-handling-fortran-mex-files-with-internal-subroutines)
+
 
 ## Contact
 
