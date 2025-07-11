@@ -20,6 +20,9 @@ jobs:
         os: [ubuntu-22.04, ubuntu-24.04, ubuntu-latest] #, windows-latest]
         matlab_release: [R2024a, R2024b, R2025a]
         gfortran_version: [10, 11, 12, 13, 14]
+        exclude:
+          - os: ubuntu-22.04
+            gfortran_version: 14
 
     steps:
       - name: Check out repository
