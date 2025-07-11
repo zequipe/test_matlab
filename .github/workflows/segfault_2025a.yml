@@ -17,7 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest] #, windows-latest]
+        os: [ubuntu-22.04, ubuntu-24.04, ubuntu-latest] #, windows-latest]
         matlab_release: [R2024a, R2024b, R2025a]
         gfortran_version: [10, 11, 12, 13, 14]
 
