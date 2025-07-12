@@ -42,12 +42,12 @@ jobs:
           realpath "$(command -v gfortran)"
 
       - name: Set up MATLAB
-        uses: matlab-actions/setup-matlab@v2.1.2
+        uses: matlab-actions/setup-matlab@v2.5.0
         with:
           release: ${{ env.MATLAB_RELEASE }}
 
       - name: Run script
-        uses: matlab-actions/run-command@v2.1.1
+        uses: matlab-actions/run-command@v2.2.1
         with:
           command: |
               cd('crash');
