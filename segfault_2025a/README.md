@@ -89,10 +89,10 @@ Options file details
 -------------------------------------------------------------------
 Building with 'gfortran'.
 /usr/bin/gfortran -c -DMATLAB_DEFAULT_RELEASE=R2017b  -DUSE_MEX_CMD    -I"/opt/hostedtoolcache/MATLAB/2025.1.999/x64/extern/include" -I"/opt/hostedtoolcache/MATLAB/2025.1.999/x64/simulink/include" -fexceptions -fbackslash -fPIC -fno-omit-frame-pointer -fallow-argument-mismatch -fdefault-integer-8 -g "/home/runner/work/test_matlab/test_matlab/segfault_2025a/optimize.F90" -o /tmp/mex_1037477951999_9281/optimize.o
-f951: Warning: Nonexistent include directory ���/opt/hostedtoolcache/MATLAB/2025.1.999/x64/simulink/include��� [-Wmissing-include-dirs]
+f951: Warning: Nonexistent include directory /opt/hostedtoolcache/MATLAB/2025.1.999/x64/simulink/include [-Wmissing-include-dirs]
 
 /usr/bin/gfortran -c -DMATLAB_DEFAULT_RELEASE=R2017b  -DUSE_MEX_CMD    -I"/opt/hostedtoolcache/MATLAB/2025.1.999/x64/extern/include" -I"/opt/hostedtoolcache/MATLAB/2025.1.999/x64/simulink/include" -fexceptions -fbackslash -fPIC -fno-omit-frame-pointer -fallow-argument-mismatch -fdefault-integer-8 -g "/opt/hostedtoolcache/MATLAB/2025.1.999/x64/extern/version/fortran_mexapi_version.F" -o /tmp/mex_1037477951999_9281/fortran_mexapi_version.o
-f951: Warning: Nonexistent include directory ���/opt/hostedtoolcache/MATLAB/2025.1.999/x64/simulink/include��� [-Wmissing-include-dirs]
+f951: Warning: Nonexistent include directory /opt/hostedtoolcache/MATLAB/2025.1.999/x64/simulink/include [-Wmissing-include-dirs]
 
 {
   "bundle.symbolic_name" : "be8e5504-e0f7-492e-b08a-03d11430c8f2",
@@ -257,7 +257,6 @@ on debugging MEX-files.
 
 MATLAB is exiting because of fatal error
 exit status 255
-
 ```
 
 If you are using an earlier version, the test should complete without errors.
