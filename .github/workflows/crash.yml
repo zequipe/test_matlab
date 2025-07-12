@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-2019]  # MEX does not work on windows-latest yet
+        os: [ubuntu-latest, macos-latest, windows-latest]  # MEX does not work on windows-latest yet
         crash_type: [default, setup, mex]
         crash_indicator : [true, false]
         exclude:
