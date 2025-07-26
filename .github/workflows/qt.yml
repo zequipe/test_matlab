@@ -36,11 +36,9 @@ jobs:
           docker-images: true
           swap-storage: false  # Important, or the runner may be shut down due to memory starvation.
 
-      - name: Remove large packages
+      - name: Install packages needed by MATLAB; they may have been removed by `free-disk-space`
         run: |
-          #sudo apt-get remove -y libgl1-mesa-dri --fix-missing || echo "::warning::The command [sudo apt-get remove -y azure-cli google-chrome-stable firefox powershell mono-devel libgl1-mesa-dri --fix-missing] failed to complete successfully. Proceeding..."
           sudo apt install -y libgl1 libgl1-mesa-dri libglx-mesa0 libglx0 xvfb
-
 
       - name: Check out repository
         uses: actions/checkout@v4.2.2
