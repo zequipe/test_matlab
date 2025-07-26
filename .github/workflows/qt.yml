@@ -1,1 +1,42 @@
-../../qt/qt.yml
+name: Illustrate an issue with Qt and MATLAB R2025a
+on:
+  push:
+  # Trigger the workflow by cron. The default time zone of GitHub Actions is UTC.
+  schedule:
+    - cron: '0 16 * * 5'
+  # Trigger the workflow when it is manually triggered
+  workflow_dispatch:
+
+
+jobs:
+  build:
+    name: Illustrate an issue with Qt and MATLAB R2025a
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, ubuntu-24.04]
+        matlab: [R2025a, latest]
+
+
+    steps:
+
+      - name: Run `sudo apt update`
+        run: sudo apt update  # Otherwise, free-disk-space or other actions relying on `apt` may fail
+
+      - name: Install Qt, which is needed by MATLAB R2025a
+        run: sudo apt install qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools
+
+      - name: Check out repository
+        uses: actions/checkout@v4.2.2
+
+      - name: Set up MATLAB
+        uses: matlab-actions/setup-matlab@v2
+        with:
+          release: ${{ matrix.matlab }}
+
+      - name: Conduct the test
+        uses: matlab-actions/run-command@v2
+        with:
+          command: |
+            ver; x = linspace(-2*pi,2*pi); y1 = sin(x); hfig = figure(); plot(x,y1); saveas(hfig, 'test', 'epsc2');
