@@ -55,4 +55,4 @@ jobs:
         uses: matlab-actions/run-command@v2
         with:
           command: |
-            ver; x = linspace(0, 1); plot(x,y1);
+            ver; x = linspace(0, 1); plot(x, x);
