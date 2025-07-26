@@ -55,4 +55,4 @@ jobs:
         uses: matlab-actions/run-command@v2
         with:
           command: |
-            ver; x = linspace(-2*pi,2*pi); y1 = sin(x); hfig = figure(); plot(x,y1); %saveas(hfig, 'test', 'epsc2');
+            ver; x = linspace(-2*pi,2*pi); y1 = sin(x); %hfig = figure(); plot(x,y1); %saveas(hfig, 'test', 'epsc2');
