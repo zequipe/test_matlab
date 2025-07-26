@@ -9,7 +9,8 @@ else
 end
 fprintf('**************************************************************************\n');
 
-mex('-v', 'FFLAGS="$FFLAGS -ftrampoline-impl=heap"', 'optimize.F90');
+%mex('-v',  '-g', 'FFLAGS="$FFLAGS -ftrampoline-impl=heap -Wno-missing-include-dirs"', 'optimize.F90');
+mex('-v',  '-g', 'optimize.F90');
 optimize();
 
 fprintf('**************************************************************************\n');
