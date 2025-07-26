@@ -15,8 +15,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-24.04]
-        matlab: [R2025a]
+        os: [ubuntu-22.04, ubuntu-24.04, ubuntu-latest]
+        matlab: [latest, R2025a]
 
 
     steps:
@@ -32,17 +32,12 @@ jobs:
           android: true 
           dotnet: true
           haskell: true
-          large-packages: true
+          large-packages: false
           docker-images: true
           swap-storage: false  # Important, or the runner may be shut down due to memory starvation.
 
       - name: Check out repository
         uses: actions/checkout@v4.2.2
-        with:
-          submodules: recursive
-
-      - name: Install Qt, which is needed by MATLAB R2025a
-        run: sudo apt install qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools
 
       - name: Set up MATLAB
         uses: matlab-actions/setup-matlab@v2.5.0
