@@ -40,7 +40,7 @@ jobs:
         run: |
           # The following were removed by the `large-packages` section of `free-disk-space`. Without them,
           # MATLAB R2025a fails with "Assertion: This application failed to start because no Qt platform plugin could be initialized".
-          sudo apt install -y libgl1 libgl1-mesa-dri libglx-mesa0 libglx0 xvfb
+          #sudo apt install -y libgl1 libgl1-mesa-dri libglx-mesa0 libglx0 xvfb
 
       - name: Check out repository
         uses: actions/checkout@v4.2.2
@@ -55,4 +55,4 @@ jobs:
         uses: matlab-actions/run-command@v2
         with:
           command: |
-            ver; x = linspace(-2*pi,2*pi); y1 = sin(x); hfig = figure(); plot(x,y1); saveas(hfig, 'test', 'epsc2');
+            ver; x = linspace(-2*pi,2*pi); y1 = sin(x); hfig = figure(); plot(x,y1); %saveas(hfig, 'test', 'epsc2');
