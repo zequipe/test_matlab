@@ -39,6 +39,7 @@ jobs:
       - name: Remove large packages
         run: |
           sudo apt-get remove -y libgl1-mesa-dri --fix-missing || echo "::warning::The command [sudo apt-get remove -y azure-cli google-chrome-stable firefox powershell mono-devel libgl1-mesa-dri --fix-missing] failed to complete successfully. Proceeding..."
+          sudo apt install -y xvfb
 
       - name: Check out repository
         uses: actions/checkout@v4.2.2
