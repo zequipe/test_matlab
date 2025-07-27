@@ -263,3 +263,36 @@ If you are using an earlier version, the test should complete without errors.
 
 See https://github.com/zequipe/test_matlab/actions/runs/16096537922 for a GitHub Actions run that
 reproduces the issue.
+
+## [Bug confirmation from MathWorks](./mathworks.png)
+
+```plaintext
+---------- Forwarded message ---------
+From: Esther Yi <support@mathworks.cn>
+Date: Mon, Jul 14, 2025 at 7:14 PM
+Subject: Re: Bug in MATLAB R2025a MEX: internal subroutines cause segfault [ ref:!00Di00Ha1u.!500UU0SYwr4:ref ]
+To: zaikunzhang@gmail.com <zaikunzhang@gmail.com>
+
+
+Dear Zaikun,
+
+I am writing in reference to your Technical Support Case 07931486 regarding 'Bug in MATLAB R2025a MEX: internal subroutines cause segfault'.
+
+Thank you for bringing this issue to our attention. We have confirmed that this is a bug and have reported it to our development team. I have attached your case to our internal records, so you will be notified by email once a fix is available.
+
+Please note that while this service request will be closed, your case will remain open in our database for our developers to address.
+
+In the meantime, the only available workaround is to use an earlier release or to work on Windows.
+
+If you have any further questions, please let me know.
+
+If you have a new technical support question, please submit a new request here:
+http://www.mathworks.com/support/servicerequests/create.html
+
+Sincerely,
+Esther Yi
+MathWorks Technical Support Team
+
+Self-Service: http://www.mathworks.com/support
+File Exchange and MATLAB Answers: http://www.mathworks.com/matlabcentral/
+```
