@@ -51,7 +51,7 @@ jobs:
         with:
           submodules: recursive
 
-      # Misc setup. This must be run AFTER `free-disk-space`, not before, because `free-disk-space`
+      # Miscellaneous setup. This must be run AFTER `free-disk-space`, not before, as `free-disk-space`
       # may remove some packages that are installed by the miscellaneous setup.
       - name: Miscellaneous setup
         if: ${{ matrix.misc_setup }}
