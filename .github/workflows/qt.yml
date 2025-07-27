@@ -1,4 +1,4 @@
-name: Illustrate an issue with Qt and MATLAB R2025a; expected to fail with "R2025a" and "false"
+name: Illustrate an issue with Qt and MATLAB R2025a; expected to fail with "R2025a", "false", "false"
 on:
   push:
   # Trigger the workflow by cron. The default time zone of GitHub Actions is UTC.
@@ -17,7 +17,8 @@ jobs:
       matrix:
         os: [ubuntu-22.04, ubuntu-24.04, ubuntu-latest]
         matlab: [R2024b, R2025a, latest]
-        reinstall_packages: [true, false]  # Whether to re-install packages removed by `free-disk-space`
+        reinstall_packages: [true, false]  # Whether to re-install necessary packages removed by `free-disk-space`
+        misc_setup: [true, false]  # Whether to run `mist_setup` after cloning the repository; this will also re-install necessary packages removed by `free-disk-space`
 
 
     steps:
@@ -47,6 +48,14 @@ jobs:
 
       - name: Check out repository
         uses: actions/checkout@v4.2.2
+        with:
+          submodules: recursive
+
+      # Misc setup. This must be run AFTER `free-disk-space`, not before, because `free-disk-space`
+      # may remove some packages that are installed by the miscellaneous setup.
+      - name: Miscellaneous setup
+        if: ${{ matrix.misc_setup }}
+        run: bash .github/scripts/misc_setup
 
       - name: Set up MATLAB
         uses: matlab-actions/setup-matlab@v2.5.0
