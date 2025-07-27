@@ -1,4 +1,4 @@
-This is a bug in MATLAB R2025a MEX when handling internal subroutines in Fortran.
+This is a [bug in MATLAB R2025a MEX](#bug-confirmation-from-mathworks) when handling internal subroutines in Fortran.
 
 In brief, if the Fortran MEX file contains an internal subroutine used as an actual argument to another subroutine, then MATLAB R2025a encounters a segfault under **Ubuntu** 22.04 and 24.04. Previous versions of MATLAB work without a problem (I have tested R2024a and R2024b). Windows and macOS have not been tested.
 
