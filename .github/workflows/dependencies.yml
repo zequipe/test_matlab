@@ -1,0 +1,50 @@
+name: Illustrate an issue with Qt and MATLAB R2025a, remove package
+on:
+  push:
+  # Trigger the workflow by cron. The default time zone of GitHub Actions is UTC.
+  schedule:
+    - cron: '0 14 * * 3'
+  # Trigger the workflow when it is manually triggered
+  workflow_dispatch:
+
+
+jobs:
+  build:
+    name: Illustrate an issue with Qt and MATLAB R2025a
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, ubuntu-24.04]
+        matlab: [R2024a, R2024b, R2025a]
+        package: [libgl1, libgl1-mesa-dri, libglx-mesa0, libglx0, xvfb, x11-xkb-utils, xserver-common, xul-ext-ubufox, zerofree]
+
+    steps:
+
+      - name: Remove package
+        run: |
+          sudo apt update -y
+          sudo apt upgrade -y
+          sudo apt remove -y ${{ matrix.package }}
+          #sudo apt-get autoremove -y  # This will remove many packages in addition to the specified one
+          dpkg -l ${{ matrix.package }} || true
+
+      - name: Set up MATLAB
+        uses: matlab-actions/setup-matlab@v2
+        with:
+          release: ${{ matrix.matlab }}
+          cache: false
+
+      - name: Check package
+        run: |
+          dpkg -l ${{ matrix.package }} || true
+
+      - name: Conduct the test
+        uses: matlab-actions/run-command@v2
+        with:
+          command: |
+            ver
+            x = linspace(0, 1)
+            hfig = figure();  
+            plot(x, x);
+            saveas(hfig, 'test', 'epsc2');
