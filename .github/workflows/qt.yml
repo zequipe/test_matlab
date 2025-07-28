@@ -44,7 +44,7 @@ jobs:
           # The following were removed by the `large-packages` section of `free-disk-space`.
           # Without them, MATLAB R2025a when running `plot` crashes with an internal error:
           # "Assertion: This application failed to start because no Qt platform plugin could be initialized".
-          sudo apt install -y libgl1 libgl1-mesa-dri libglx-mesa0 libglx0 xvfb
+          sudo apt install -y x11-xkb-utils
 
       - name: Check out repository
         uses: actions/checkout@v4.2.2
