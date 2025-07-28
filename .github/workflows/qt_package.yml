@@ -16,9 +16,8 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-22.04, ubuntu-24.04]
-        matlab: [R2024b, R2025a]
-        #package: [libgl1, libgl1-mesa-dri, libglx-mesa0, libglx0, xvfb]
-        package: [x11-xkb-utils, xserver-common, xul-ext-ubufox, zerofree]
+        matlab: [R2024a, R2024b, R2025a]
+        package: [libgl1, libgl1-mesa-dri, libglx-mesa0, libglx0, xvfb, x11-xkb-utils, xserver-common, xul-ext-ubufox, zerofree]
 
     steps:
 
