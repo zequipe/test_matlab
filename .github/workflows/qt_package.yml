@@ -24,7 +24,9 @@ jobs:
       - name: Remove package
         run: |
           sudo apt update -y
+          sudo apt upgrade -y
           sudo apt remove -y ${{ matrix.package }}
+          sudo apt-get autoremove -y
 
       - name: Set up MATLAB
         uses: matlab-actions/setup-matlab@v2
