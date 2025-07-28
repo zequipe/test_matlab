@@ -17,7 +17,8 @@ jobs:
       matrix:
         os: [ubuntu-22.04, ubuntu-24.04]
         matlab: [R2024b, R2025a]
-        package: [libgl1, libgl1-mesa-dri, libglx-mesa0, libglx0, xvfb]
+        #package: [libgl1, libgl1-mesa-dri, libglx-mesa0, libglx0, xvfb]
+        package: [x11-xkb-utils, xserver-common, xul-ext-ubufox, zerofree]
 
     steps:
 
@@ -26,7 +27,7 @@ jobs:
           sudo apt update -y
           sudo apt upgrade -y
           sudo apt remove -y ${{ matrix.package }}
-          sudo apt-get autoremove -y
+          #sudo apt-get autoremove -y
 
       - name: Set up MATLAB
         uses: matlab-actions/setup-matlab@v2
