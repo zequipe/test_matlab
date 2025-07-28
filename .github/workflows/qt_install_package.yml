@@ -32,11 +32,10 @@ jobs:
 
       - name: Install package
         run: |
-          sudo apt update -y
-          sudo apt upgrade -y
+          dpkg -l ${{ matrix.package }} || true
           sudo apt install -y ${{ matrix.package }}
           sudo apt-get autoremove -y
-          dpkg -l | grep ${{ matrix.package }} || true
+          dpkg -l ${{ matrix.package }} || true
 
       - name: Set up MATLAB
         uses: matlab-actions/setup-matlab@v2
