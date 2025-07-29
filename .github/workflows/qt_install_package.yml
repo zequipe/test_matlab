@@ -1,6 +1,6 @@
 name: Illustrate an issue with Qt and MATLAB R2025a, install package
 on:
-  push:
+  #push:
   # Trigger the workflow by cron. The default time zone of GitHub Actions is UTC.
   schedule:
     - cron: '0 14 * * 3'
