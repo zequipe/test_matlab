@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    name: Illustrate an issue with Qt and MATLAB R2025a
+    name: Illustrate an issue of matlab-actions/setup-matlab with MATLAB R2025a
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
