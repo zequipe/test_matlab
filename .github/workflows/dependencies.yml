@@ -1,4 +1,4 @@
-name: Illustrate an issue with Qt and MATLAB R2025a, remove package
+name: Illustrate an issue of matlab-actions/setup-matlab with the dependencies of MATLAB R2025a. Expected to fail with '2025a' and 'x11-xkb-utils' and timeout with 'R2025a' and 'libgl1'.
 on:
   push:
   # Trigger the workflow by cron. The default time zone of GitHub Actions is UTC.
@@ -17,7 +17,7 @@ jobs:
       matrix:
         os: [ubuntu-22.04, ubuntu-24.04]
         matlab: [R2024a, R2024b, R2025a]
-        package: [libgl1, libgl1-mesa-dri, libglx-mesa0, libglx0, xvfb, x11-xkb-utils, xserver-common, xul-ext-ubufox, zerofree]
+        package: [x11-xkb-utils, libgl1]
 
     steps:
 
@@ -43,8 +43,12 @@ jobs:
         uses: matlab-actions/run-command@v2
         with:
           command: |
-            ver
-            x = linspace(0, 1)
-            hfig = figure();  
-            plot(x, x);
-            saveas(hfig, 'test', 'epsc2');
+            ver;
+            x = linspace(0, 1);
+            hfig = figure();
+            fprintf('\nStarting plot ...\n');
+            plot(x, x);  % With x11-xkb-utils removed, this will trigger a crash in R2025a
+            fprintf('\nFinished plot.\n');
+            fprintf('\nSaving figure ...\n');
+            saveas(hfig, 'test', 'epsc2');  % With libgl1 removed, this will never terminate in R2025a
+            fprintf('\nFinished saving figure.\n');
