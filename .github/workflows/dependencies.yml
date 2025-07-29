@@ -15,8 +15,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-22.04, ubuntu-24.04]
-        matlab: [R2024a, R2024b, R2025a]
+        os: [ubuntu-22.04, ubuntu-24.04, ubuntu-latest]
+        matlab: [R2024a, R2024b, R2025a, latest]
         package: [x11-xkb-utils, libgl1]
 
     steps:
