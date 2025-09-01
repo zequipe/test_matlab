@@ -39,6 +39,15 @@ jobs:
           compiler: gcc
           version: ${{ matrix.gfortran_version }}
 
+      - name: Check gfortran version
+        shell: bash
+        run: |
+          which gcc && gcc --version && which gfortran && gfortran --version
+
+      - name: Make links
+        run: |
+          ln -sf /usr/lib/x86_64-linux-gnu/libgcc_s.so.1 /opt/hostedtoolcache/MATLAB/2025.1.999/x64/bin/glnxa64/../../sys/os/glnxa64/libgcc_s.so.1
+
       - name: Set up MATLAB
         uses: matlab-actions/setup-matlab@v2.5.0
         with:
