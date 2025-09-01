@@ -20,7 +20,7 @@ env:
 
 jobs:
   test:
-    name: Test running time concerning MEX
+    name: Test supported compilers of MATLAB MEX
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
