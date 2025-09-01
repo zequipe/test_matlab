@@ -56,7 +56,6 @@ jobs:
         if: matrix.os == 'macos-latest' && matrix.language == 'Fortran'
         run: bash .github/scripts/intelvars_macos.sh
 
-
       - name: cache install Intel oneAPI on Windows
         if: startsWith(matrix.os, 'windows') && matrix.language == 'Fortran'
         id: cache-install-windows
@@ -76,7 +75,12 @@ jobs:
         if: startsWith(matrix.os, 'windows') && matrix.language == 'Fortran'
         run: |
           cmd.exe "/K" '".github/scripts/intelvars_windows.bat" && powershell'
-
+          
+      - name: Set up gortran                                                                         
+        uses: fortran-lang/setup-fortran@main                                                                                                                                                                
+        with:                                                                                        
+          compiler: gcc                                                      
+          version: ${{ matrix.gfortran_version }}     
 
       - name: Link gfortran for MATLAB on Linux
         if: startsWith(matrix.os, 'ubuntu') && matrix.language == 'Fortran'
