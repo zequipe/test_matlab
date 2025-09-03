@@ -1,4 +1,4 @@
-name: Demonstrate an issue with the MEX of MATLAB R2025a, expected to segfault with R2025a, except [14, latest]-true
+name: Demonstrate an issue with the MEX of MATLAB R2025a, expected to segfault with R2025a, except [14, latest]-true; 20 failures when matlab-lastest is R2025a
 
 on:
   # Trigger the workflow by cron. The default time zone of GitHub Actions is UTC.
