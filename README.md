@@ -26,6 +26,10 @@ in particular on [GitHub Actions](https://github.com/equipez/test_matlab/actions
 
 ## Discussions
 
+- StackOverflow: [An issue with `parfor` in MATLAB R2023a--R2025a](https://stackoverflow.com/questions/79768366/an-issue-with-parfor-in-matlab-r2023a-r2025a)
+
+- MATLAB Answer: [An issue with `parfor` in MATLAB R2023a--R2025a](https://www.mathworks.com/matlabcentral/answers/2180029-an-issue-with-parfor-in-matlab-r2023a-r2025a)
+
 - StackOverflow: [Does MEX of MATLAB R2023b (update 6) on macOS-13 work with Xcode 15.0 and Intel oneAPI 2023?](https://stackoverflow.com/questions/77998520/does-mex-of-matlab-r2023b-update-6-work-with-xcode-15-0-and-intel-oneapi-2023)
 
 - MATLAB Answer: [Does MEX of MATLAB R2023b (update 6) on macOS-13 work with Xcode 15.0 and Intel oneAPI 2023?](https://www.mathworks.com/matlabcentral/answers/2082233-does-mex-of-matlab-r2023b-update-6-on-macos-13-work-with-xcode-15-0-and-intel-oneapi-2023)
