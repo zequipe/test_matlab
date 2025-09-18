@@ -45,3 +45,6 @@ However, comparing test.m and profile.m, you will find that **they are identical
 
 I understand that the failure must depend on the fact that **MATLAB has a built-in function named "profile", which is shadowed by "profile.m"**.
 **Needless to say, this is bad practice**, but it is not clear to me why it **should** lead to such a failure.
+
+See https://github.com/zequipe/test_matlab/actions/workflows/test_parfor.yml for a GitHub Actions
+workflow that tests this on MATLAB R2021a+.
