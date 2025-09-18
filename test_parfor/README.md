@@ -32,9 +32,7 @@ To see the issue, do the following in **MATLAB R2023a--R2025a with the Parallel 
     Error in profile (line 10)
         try_parfor(func);
         ^^^^^^^^^^^^^^^^^
-    Error in command_6fcf2b67_3644_466f_80cd_8f5ffa8d8e6e (line 8)
-      profile;
-      ^^^^^^^^
+
     Caused by:
         Unrecognized function or variable 'fun'.
         Worker unable to find file.
