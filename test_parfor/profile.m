@@ -10,7 +10,7 @@ function profile()
     try_parfor(func);
 
     cd(olddir);
-    fprintf('\nCurrently directory: %s\n', pwd());
+    fprintf('\nCurrent directory: %s\n', pwd());
 
     fprintf('\nSuccess!\n');
 

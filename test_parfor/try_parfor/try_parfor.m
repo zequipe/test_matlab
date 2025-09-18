@@ -1,7 +1,7 @@
 function try_parfor(func)
 
     fprintf('\nEntering try_parfor\n');
-    fprintf('\nCurrently directory: %s\n', pwd());
+    fprintf('\nCurrent directory: %s\n', pwd());
 
     parfor i = 1:2
         fprintf("\n%d\n", feval(func, i));
