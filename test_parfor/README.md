@@ -43,4 +43,5 @@ To see the issue, do the following in **MATLAB R2023a--R2025a with the Parallel 
 
 However, comparing test.m and profile.m, you will find that **they are identical except for the function names**. **Is this expected or a bug**?
 
-I understand that the failure must depend on the fact that **MATLAB has a built-in function named "profile", which is shadowed by "profile.m"**. But it is not clear to me why it should lead to such a failure.
+I understand that the failure must depend on the fact that **MATLAB has a built-in function named "profile", which is shadowed by "profile.m"**.
+**Needless to say, this is bad practice**, but it is not clear to me why it **should** lead to such a failure.
