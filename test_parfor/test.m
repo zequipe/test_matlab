@@ -12,6 +12,8 @@ function test()
     cd(olddir);
     fprintf('\nCurrently directory: %s\n', pwd());
 
+    fprintf('\nSuccess!\n');
+
 end
 
 
