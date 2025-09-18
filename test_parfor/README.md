@@ -2,9 +2,9 @@ This is a reproducer for an issue with `parfor` in MATLAB R2023a--R2025a.
 
 To see the issue, do the following in **MATLAB R2023a--R2025a with the Parallel Computing Toolbox installed**.
 
-1. Download this directory. Suppose that you name at `test_parfor`.
+1. Download this directory. Suppose that you name it `test_parfor`.
 
-2. Open MATLAB and change the current folder to `test_parfor`.
+2. Open MATLAB and change the current directory to `test_parfor`.
 
 3. Run the following command in the MATLAB command window:
 
@@ -41,6 +41,6 @@ To see the issue, do the following in **MATLAB R2023a--R2025a with the Parallel 
     exit status 1
    ```
 
-However, comparing test.m and profile.m, you will find that **they have the same content except for the function names**. **Is this expected or a bug**?
+However, comparing test.m and profile.m, you will find that **they are identical except for the function names**. **Is this expected or a bug**?
 
 I understand that the failure must depend on the fact that **MATLAB has a built-in function named "profile", which is shadowed by "profile.m"**. But it is not clear to me why it should lead to such a failure.

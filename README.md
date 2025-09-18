@@ -2,6 +2,9 @@
 
 This repository contains a set of scripts that test the behavior of MATLAB, sometimes illustrate its bugs.
 
+- [`test_parfor`](https://github.com/zequipe/test_matlab/tree/master/test_parfor) illustrates a bug
+  of MATLAB R2023b+ concerning `parfor` [[README](https://https://github.com/zequipe/test_matlab/blob/master/test_parfor/README.md)].
+
 - [`segfault_2025a`](https://github.com/zequipe/test_matlab/tree/master/segfault_2025a) illustrates
   a bug in MATLAB R2025a MEX when handling internal subroutines in Fortran. [[README](https://github.com/zequipe/test_matlab/blob/master/segfault_2025a/README.md)]
 
