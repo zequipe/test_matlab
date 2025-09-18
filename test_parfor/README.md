@@ -1,6 +1,6 @@
 This is a reproducer for an issue with `parfor` in MATLAB R2023a--R2025a.
 
-To see the issue, do the following in **MATLAB R2023a--R2025a with Parallel Computing Toolbox installed**.
+To see the issue, do the following in **MATLAB R2023a--R2025a with the Parallel Computing Toolbox installed**.
 
 1. Download this directory. Suppose that you name at `test_parfor`.
 
