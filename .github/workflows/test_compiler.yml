@@ -25,68 +25,26 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        #os: [ubuntu-latest, macos-latest, windows-2019]
-        #language: [C, Fortran]
         os: [ubuntu-latest]
         language: [Fortran]
         gfortran_version: [10, 11, 12, 13,14]
-        matlab_release: [R2021a, R2021b, R2022a, R2022b, R2023a, R2023b, R2024a, R2024b, latest]
+        matlab_release: [R2021a, R2021b, R2022a, R2022b, R2023a, R2023b, R2024a, R2024b, R2025a, R2025b, latest]
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v5.0.0
 
-
-      - name: prepare for cache restore for Intel oneAPI on macOS
-        if: matrix.os == 'macos-latest' && matrix.language == 'Fortran'
-        run: |
-          sudo mkdir -p /opt/intel
-          sudo chown $USER /opt/intel
-      - name: cache install Intel oneAPI on macOS
-        if: matrix.os == 'macos-latest' && matrix.language == 'Fortran'
-        id: cache-install-macos
-        uses: actions/cache@v4.2.4
+      - name: Set up gortran
+        if: startsWith(matrix.os, 'ubuntu')
+        uses: fortran-lang/setup-fortran@main
         with:
-          path: /opt/intel/oneapi
-          key: install-${{ env.MACOS_HPCKIT_URL }}-${{ env.MACOS_FORTRAN_COMPONENTS }}
-      - name: install Intel oneAPI on macOS
-        if: matrix.os == 'macos-latest' && matrix.language == 'Fortran' && steps.cache-install-macos.outputs.cache-hit != 'true'
-        run: bash .github/scripts/install_oneapi_macos.sh $MACOS_HPCKIT_URL $MACOS_FORTRAN_COMPONENTS
-      - name: Run setvars.sh and make symlinks on macOS
-        if: matrix.os == 'macos-latest' && matrix.language == 'Fortran'
-        run: bash .github/scripts/intelvars_macos.sh
-
-      - name: cache install Intel oneAPI on Windows
-        if: startsWith(matrix.os, 'windows') && matrix.language == 'Fortran'
-        id: cache-install-windows
-        uses: actions/cache@v4.2.4
-        with:
-          path: C:\Program Files (x86)\Intel\oneAPI\compiler
-          key: install-${{ env.WINDOWS_HPCKIT_URL }}-${{ env.WINDOWS_FORTRAN_COMPONENTS }}-compiler-${{ hashFiles('**/.github/scripts/cache_exclude_oneapi_windows.sh') }}
-      - name: install Intel oneAPI on Windows
-        if: startsWith(matrix.os, 'windows') && matrix.language == 'Fortran' && steps.cache-install-windows.outputs.cache-hit != 'true'
+          compiler: gcc
+          version: ${{ matrix.gfortran_version }}
+      - name: Check gfortran version
+        if: startsWith(matrix.os, 'ubuntu')
         shell: bash
-        run: .github/scripts/install_oneapi_windows.bat $WINDOWS_HPCKIT_URL $WINDOWS_FORTRAN_COMPONENTS
-      - name: exclude unused files from cache for Intel oneAPI on Windows
-        if: startsWith(matrix.os, 'windows') && matrix.language == 'Fortran' && steps.cache-install-windows.outputs.cache-hit != 'true'
-        shell: bash
-        run: .github/scripts/cache_exclude_oneapi_windows.sh
-      - name: Run intelvars_windows.bat
-        if: startsWith(matrix.os, 'windows') && matrix.language == 'Fortran'
         run: |
-          cmd.exe "/K" '".github/scripts/intelvars_windows.bat" && powershell'
-          
-      - name: Set up gortran                       
-        if: startsWith(matrix.os, 'ubuntu') 
-        uses: fortran-lang/setup-fortran@main                                                                                                                                                                
-        with:                                                                                        
-          compiler: gcc                                                     
-          version: ${{ matrix.gfortran_version }}     
-      - name: Check gfortran version   
-        if: startsWith(matrix.os, 'ubuntu') 
-        shell: bash                                                                             
-        run: |                                                                                  
-          which gcc && gcc --version && which gfortran && gfortran --version  
+          which gcc && gcc --version && which gfortran && gfortran --version
 
       - name: Set up MATLAB
         uses: matlab-actions/setup-matlab@v2.1.2

@@ -17,11 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # See the following for the configurations of macos-12 and macos-13 runners, especially the
-        # versions of Xcode
-        # https://github.com/actions/runner-images/blob/macos-13/20240114.1/images/macos/macos-12-Readme.md
-        # https://github.com/actions/runner-images/blob/macos-13/20240114.1/images/macos/macos-13-Readme.md
-        os: [macos-13, macos-12]
+        os: [macos-15-intel]
         matlab: [latest, R2024a, R2023b, R2023a]
         oneapi: [2023, 2022, 2021]
 

@@ -18,25 +18,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, ubuntu-20.04, macos-11, macos-latest, macos-13]
-        matlab: [R2020b, R2021a, R2022a, R2023a, R2023b, latest]
-
-        # Exclude some versions of OS and MATLAB.
-        exclude:
-          - os: macos-latest
-            matlab: R2023b
-          - os: macos-11
-            matlab: R2023b
-          - os: macos-13
-            matlab: R2023b
-          - os: macos-latest
-            matlab: latest
-          - os: macos-11
-            matlab: latest
-          - os: macos-13
-            matlab: latest
-
-
+        os: [ubuntu-latest, macos-latest]
+        matlab: [latest]
 
     steps:
 

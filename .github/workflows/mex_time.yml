@@ -27,7 +27,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-2019]
+        os: [ubuntu-latest, macos-15-intel, macos-latest, windows-2019]
         language: [C, Fortran]
 
     steps:
@@ -36,22 +36,22 @@ jobs:
 
 
       - name: prepare for cache restore for Intel oneAPI on macOS
-        if: matrix.os == 'macos-latest' && matrix.language == 'Fortran'
+        if: startsWith(matrix.os, 'macos') && matrix.language == 'Fortran'
         run: |
           sudo mkdir -p /opt/intel
           sudo chown $USER /opt/intel
       - name: cache install Intel oneAPI on macOS
-        if: matrix.os == 'macos-latest' && matrix.language == 'Fortran'
+        if: startsWith(matrix.os, 'macos') && matrix.language == 'Fortran'
         id: cache-install-macos
         uses: actions/cache@v4.2.4
         with:
           path: /opt/intel/oneapi
           key: install-${{ env.MACOS_HPCKIT_URL }}-${{ env.MACOS_FORTRAN_COMPONENTS }}
       - name: install Intel oneAPI on macOS
-        if: matrix.os == 'macos-latest' && matrix.language == 'Fortran' && steps.cache-install-macos.outputs.cache-hit != 'true'
+        if: startsWith(matrix.os, 'macos') && matrix.language == 'Fortran' && steps.cache-install-macos.outputs.cache-hit != 'true'
         run: bash .github/scripts/install_oneapi_macos.sh $MACOS_HPCKIT_URL $MACOS_FORTRAN_COMPONENTS
       - name: Run setvars.sh and make symlinks on macOS
-        if: matrix.os == 'macos-latest' && matrix.language == 'Fortran'
+        if: startsWith(matrix.os, 'macos') && matrix.language == 'Fortran'
         run: bash .github/scripts/intelvars_macos.sh
 
 
