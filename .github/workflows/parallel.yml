@@ -47,7 +47,7 @@ jobs:
           submodules: recursive
 
       - name: Cache MATLAB  # N.B.: Clear the cache when the `latest` version of MATLAB changes in March and September
-        uses: actions/cache@v4.2.4
+        uses: actions/cache@v4.3.0
         with:
           path: ${{ runner.tool_cache }}/MATLAB
           key: ${{ matrix.os }}-${{ matrix.matlab }}-yes
