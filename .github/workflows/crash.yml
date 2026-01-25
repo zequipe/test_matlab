@@ -43,7 +43,8 @@ jobs:
           compiler: gcc
           version: ${{ env.GFORTRAN_VERSION }}
 
-      - name: Check gfortran version
+      - name: Check gfortran version on Ubuntu
+        if: startsWith(matrix.os, 'ubuntu')
         shell: bash
         run: |
           which gcc && gcc --version && which gfortran && gfortran --version
