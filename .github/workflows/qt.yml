@@ -16,7 +16,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-22.04, ubuntu-24.04, ubuntu-latest]
-        matlab: [R2024b, R2025a, latest]
+        matlab: [R2024b, R2025a, R2025b, latest]
         reinstall_packages: [true, false]  # Whether to re-install necessary packages removed by `free-disk-space`
         misc_setup: [true, false]  # Whether to run `mist_setup` after cloning the repository; this will also re-install necessary packages removed by `free-disk-space`
 
