@@ -81,7 +81,7 @@ jobs:
           version: latest
 
       - name: Set up MATLAB
-        uses: matlab-actions/setup-matlab@v2.1.2
+        uses: matlab-actions/setup-matlab@v3
         with:
           release: latest
 

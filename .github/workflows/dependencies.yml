@@ -30,7 +30,7 @@ jobs:
           dpkg -l ${{ matrix.package }} || true
 
       - name: Set up MATLAB
-        uses: matlab-actions/setup-matlab@v2
+        uses: matlab-actions/setup-matlab@v3
         with:
           release: ${{ matrix.matlab }}
           cache: false

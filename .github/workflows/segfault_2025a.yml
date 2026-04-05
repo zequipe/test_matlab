@@ -42,7 +42,7 @@ jobs:
           which gcc && gcc --version && which gfortran && gfortran --version
 
       - name: Set up MATLAB
-        uses: matlab-actions/setup-matlab@v2.5.0
+        uses: matlab-actions/setup-matlab@v3
         with:
           release: ${{ matrix.matlab_release }}
 
