@@ -51,18 +51,6 @@ jobs:
           repository: equipez/setup_mex
           path: setup_mex
 
-      - name: Link gfortran for MATLAB on Linux
-        if: startsWith(matrix.os, 'ubuntu')
-        run: |
-          GFVER=12
-          if [[ "${{ matrix.os }}" = "ubuntu-20.04" ]] ; then
-              GFVER=11
-          fi
-          if [[ "${{ matrix.matlab }}" = "R2020b" || "${{ matrix.matlab }}" = "R2021a" || "${{ matrix.matlab }}" = "R2021b" ]] ; then
-              GFVER=9
-          fi
-          bash .github/scripts/link_gfortran "$GFVER"
-
       - name: Install Intel oneAPI on macOS
         if: startsWith(matrix.os, 'macos')
         run: bash .github/scripts/install_oneapi_macos.sh
@@ -70,6 +58,13 @@ jobs:
       - name: Install Intel oneAPI on Windows
         if: startsWith(matrix.os, 'windows')
         run: cmd.exe "/K" '".github\scripts\install_oneapi_windows.bat"'
+
+      - name: Set up gfortran on Linux
+        if: startsWith(matrix.os, 'ubuntu')
+        uses: fortran-lang/setup-fortran@main
+        with:
+          compiler: gcc
+          version: latest
 
       - name: Cache MATLAB  # N.B.: Clear the cache when the `latest` version of MATLAB changes in March and September
         uses: actions/cache@v5.0.4

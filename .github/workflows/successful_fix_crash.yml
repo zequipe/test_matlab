@@ -10,10 +10,6 @@ on:
   # Trigger the workflow when it is manually triggered
   workflow_dispatch:
 
-env:
-  MATLAB_RELEASE: latest
-  GFORTRAN_VERSION: latest
-
 
 jobs:
   test:
@@ -43,7 +39,7 @@ jobs:
         uses: fortran-lang/setup-fortran@main
         with:
           compiler: gcc
-          version: ${{ env.GFORTRAN_VERSION }}
+          version: latest
 
       - name: Check gfortran version on Ubuntu
         if: startsWith(matrix.os, 'ubuntu')
@@ -54,7 +50,7 @@ jobs:
       - name: Set up MATLAB
         uses: matlab-actions/setup-matlab@v2.5.0
         with:
-          release: ${{ env.MATLAB_RELEASE }}
+          release: latest
 
       - name: Run script
         uses: matlab-actions/run-command@v2.2.1
