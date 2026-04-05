@@ -40,7 +40,7 @@ jobs:
           dpkg -l ${{ matrix.package }} || true
 
       - name: Conduct the test
-        uses: matlab-actions/run-command@v2
+        uses: matlab-actions/run-command@v3
         with:
           command: |
             ver

@@ -52,7 +52,7 @@ jobs:
           release: latest
 
       - name: Run script
-        uses: matlab-actions/run-command@v2.2.1
+        uses: matlab-actions/run-command@v3
         with:
           command: |
               cd('crash');

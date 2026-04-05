@@ -86,7 +86,7 @@ jobs:
           release: latest
 
       - name: Run script
-        uses: matlab-actions/run-command@v2.1.1
+        uses: matlab-actions/run-command@v3
         with:
           command: |
               system('realpath "$(command -v gfortran)"');
