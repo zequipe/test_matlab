@@ -1,4 +1,4 @@
-name: Demonstrate an issue with the MEX of MATLAB R2025a/b; expected to segfault with R2025a/b except for [14, 15, latest]-true; 42 failures when matlab-lastest is R2025b
+name: Demonstrate an issue with the MEX of MATLAB R2025a/b; expected to segfault with R2025a/b except for [14, 15, latest]-true; 42 failures when matlab-lastest is R2026a
 
 on:
   # Trigger the workflow by cron. The default time zone of GitHub Actions is UTC.
@@ -16,7 +16,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-22.04, ubuntu-latest]
-        matlab_release: [R2022a, R2024b, R2025a, R2025b, latest]
+        matlab_release: [R2022a, R2024b, R2025a, R2025b, R2026a, latest]
         gfortran_version: [10, 13, 14, 15, latest]
         use_system_libgcc: [true, false]  # Whether to use the system libgcc or the one shipped with MATLAB.
 
