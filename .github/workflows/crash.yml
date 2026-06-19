@@ -26,7 +26,7 @@ jobs:
             crash_indicator: false
     steps:
       - name: Check out repository
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7.0.0
         with:
           submodules: recursive
 
